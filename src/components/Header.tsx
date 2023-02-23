@@ -66,7 +66,7 @@ const NavItem = styled.li<NavItemProps>`
   }
   
   & a:hover {
-    color: red
+    color: red;
     
   }
 
