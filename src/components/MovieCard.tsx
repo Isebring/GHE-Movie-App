@@ -16,6 +16,8 @@ interface Props {
 function MovieCard(props: Props) {
   const item = props.item;
   const link = '/' + category[props.category] + '/' + item.id;
+
+  // Get background for MovieCard
   const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
 
   return (
@@ -25,6 +27,7 @@ function MovieCard(props: Props) {
           <i>Play</i>
         </button>
       </div>
+      {/* Display title of Movie or TV Show */}
       <h3>{item.title || item.name}</h3>
     </Link>
   );
