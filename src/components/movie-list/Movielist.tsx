@@ -1,20 +1,19 @@
-import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import apiConfig from '../../api/apiConfig';
 import tmdbApi, { category } from '../../api/tmdbApi';
 
 
-
-function Movielist(props) {
-    const [items, setItems] = useState([]);
-
     interface MovielistProps {
         category: string;
         type: string;
-        id?: number;
+        id: number;
     }
     
+
+function Movielist(props: MovielistProps) {
+    const [items, setItems] = useState([]);
+
 
     interface Movie {
         poster_path: string;
@@ -28,10 +27,10 @@ function Movielist(props) {
             if (props.type !== 'similar') {
                 switch(props.category) {
                     case category.movie:
-                        response = await tmdbApi.getMoviesList(props.type, {params});
+                        response = await tmdbApi.getMoviesList(props.type, {params: Object});
                         break;
                         default:
-                            response = await tmdbApi.getTvList(props.type, {params});
+                            response = await tmdbApi.getTvList(props.type, {params: Object});
                 }
             } else {
                 response = await tmdbApi.similar(props.category, props.id);
@@ -50,7 +49,7 @@ function Movielist(props) {
                 >
                 {
                 items.map((item: Movie, i: number) => (
-                    <SwiperSlide>
+                    <SwiperSlide key={i}>
                         <img src={apiConfig.w500Image(item.poster_path)} alt="" />
                     </SwiperSlide>
 
@@ -59,11 +58,6 @@ function Movielist(props) {
             </Swiper>
         </div>
     );
-}
-
-Movielist.propTypes = {
-category: PropTypes.string.isRequired,
-type: PropTypes.string.isRequired
 }
 
 export default Movielist;
