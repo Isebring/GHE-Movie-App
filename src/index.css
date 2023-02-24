@@ -3,3 +3,22 @@
   margin: 0;
   padding: 0;
 }
+
+body {
+  height: 100vh;
+  background-image: linear-gradient(
+    to right bottom,
+    #100f0f,
+    #121011,
+    #141113,
+    #161315,
+    #171417,
+    #1f1a21,
+    #26202b,
+    #2b2637,
+    #383350,
+    #42426b,
+    #4a5287,
+    #4d63a5
+  );
+}
