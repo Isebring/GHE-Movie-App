@@ -30,11 +30,11 @@ interface TmdbApi {
 const tmdbApi: TmdbApi = {
   getMoviesList: (type: string, params: object) => {
     const url = "movie/" + movieType[type];
-    return axiosClient.get(url, { params });
+    return axiosClient.get(url, { params: params });
   },
   getTvList: (type: string, params: object) => {
     const url = "tv/" + tvType[type];
-    return axiosClient.get(url, { params });
+    return axiosClient.get(url, params);
   },
   getVideos: (cate: string, id: number) => {
     const url = category[cate] + "/" + id + "/videos";
@@ -42,11 +42,11 @@ const tmdbApi: TmdbApi = {
   },
   search: (cate: string, params: object) => {
     const url = "search/" + category[cate];
-    return axiosClient.get(url, { params });
+    return axiosClient.get(url, params);
   },
   detail: (cate: string, id: number, params: object) => {
     const url = category[cate] + "/" + id;
-    return axiosClient.get(url, { params });
+    return axiosClient.get(url, params);
   },
   credits: (cate: string, id: number) => {
     const url = category[cate] + "/" + id + "/credits";

@@ -1,14 +1,20 @@
 import axios, { AxiosRequestConfig } from "axios";
-import queryString, { StringifiableRecord } from "query-string";
+import queryString from "query-string";
 import apiConfig from "./apiConfig";
 
 const axiosClient = axios.create({
   baseURL: apiConfig.baseUrl,
   headers: {
     "Content-Type": "application/json",
+    Accept: "application/json",
   },
-  paramsSerializer: (params: StringifiableRecord) =>
-    queryString.stringify({ ...params, api_key: apiConfig.api }),
+  paramsSerializer: (params: any) => {
+    const serializedParams = queryString.stringify({
+      ...params,
+      api_key: apiConfig.apiKey,
+    });
+    return serializedParams;
+  },
 } as AxiosRequestConfig);
 
 axiosClient.interceptors.request.use(async (config) => config);
