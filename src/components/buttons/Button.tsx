@@ -1,27 +1,22 @@
-import PropTypes from 'prop-types';
+import { MouseEventHandler } from 'react';
 
-type ButtonProps = React.PropsWithChildren<{ onClick?: () => void }>;
-
+type ButtonProps = React.PropsWithChildren<{ onClick?: MouseEventHandler<HTMLButtonElement> }>;
 
 function Button(props: ButtonProps) {
   return (
-    <button onClick={props.onClick?.() ?? (() => {})}>
+    <button onClick={props.onClick ?? undefined}>
       {props.children}
     </button>
   )
 }
 
-const OutlineButton = (props: ButtonProps) => {
+ export const OutlineButton = (props: ButtonProps) => {
   return (
-    <button onClick={props.onClick?.() ?? (() => {})}>
+    <button onClick={props.onClick ?? undefined}>
     {props.children}
-    </button>
+  </button>
 )
   
-}
-
-Button.propTypes = {
-  onClick: PropTypes.func
 }
 
 export default Button;

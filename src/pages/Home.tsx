@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
-import OutlineButton from '../components/buttons/Button';
+import HeroSlide from "../components/hero-slide/HeroSlide";
 
 function Home()  {
   return (
-    <div>
-    <h2>Trending Movies</h2>
+    <>    
+    <HeroSlide/>
+    {/* <h2>Trending Movies</h2>
     <Link to="/movie">
       <OutlineButton>View more</OutlineButton>
-    </Link>
-    </div>
-  )
+    </Link> */}
+    </>
+  );
 }
 
-export default Home
+export default Home;
