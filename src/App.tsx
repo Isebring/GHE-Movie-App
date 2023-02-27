@@ -1,20 +1,16 @@
-import { Route, Routes } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
+import 'swiper/swiper.min.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Routing from "./config/Routing";
 
 function App() {
   return (
-    <Routes>
-      <Route path="*" element={
-        <>
-          <Header />
-          <Routing />
-          <Footer />
-        </>
-      } />
-    </Routes>     
-  )
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
+  );
 }
 
 export default App;
