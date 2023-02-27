@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
-import apiConfig from '../api/apiConfig';
-import tmdbApi from '../api/tmdbApi';
+import apiConfig from '../../api/apiConfig';
+import tmdbApi from '../../api/tmdbApi';
 
 interface MovieDetails {
   id: number;
@@ -86,9 +86,16 @@ const Banner = styled.div`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  background-image: linear-gradient(
+    to left,
+    rgba(255, 0, 0, 0),
+    rgba(255, 0, 0, 1)
+  );
 `;
 
 const MovieContent = styled.div`
+background-color: rgba(0, 0, 0, 0.7);
+color: white;
 display: flex;
 justify-content: flex-start;
 align-items: flex-start;
@@ -125,10 +132,10 @@ const Genres = styled.div`
 `;
 
 const GenreItem = styled.span`
-  padding: 0.2rem 0.2rem;
+  padding: 0.1rem 0.1rem;
   border: 2px solid white;
   border-radius: 30px;
-  background: white;
+  background: rgba(0, 0, 0, 0.8);
 `;
 
 export default Details;
