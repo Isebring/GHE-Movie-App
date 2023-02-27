@@ -43,7 +43,7 @@ function MovieList(props: Props) {
   }, []);
 
   return (
-    <MovielistWrapper>
+    <MovieListWrapper>
       <Swiper grabCursor={true} spaceBetween={10} slidesPerView={'auto'}>
         {items.map((item: Movie, i: number) => (
           <SwiperSlide key={i}>
@@ -51,10 +51,14 @@ function MovieList(props: Props) {
           </SwiperSlide>
         ))}
       </Swiper>
-    </MovielistWrapper>
+    </MovieListWrapper>
   );
 }
 
-const MovielistWrapper = styled.div``;
+const MovieListWrapper = styled.div`
+  .swiper-slide {
+    width: 15%;
+  }
+`;
 
 export default MovieList;
