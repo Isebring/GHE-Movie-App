@@ -8,8 +8,10 @@ interface MovieDetails {
   id: number;
   title: string;
   name: string;
+  genres: { name: string }[];
   poster_path: string | null;
   backdrop_path: string | null;
+  overview: string;
 }
 
 function Details() {
@@ -54,6 +56,13 @@ function Details() {
 
             <Info>
               <div className="title">{item.title || item.name}</div>
+              <div className="genres">
+                {item.genres &&
+                  item.genres
+                    .slice(0, 5)
+                    .map((genre, i) => <span key={i}>{genre.name}</span>)}
+              </div>
+              <p className="overview">{item.overview}</p>
             </Info>
           </MovieContent>
         </>
