@@ -15,6 +15,7 @@ interface Props {
   };
   category: string;
   keyword?: string;
+  onBlur?: () => void;
 }
 
 function MovieGrid(props: Props) {
@@ -106,47 +107,38 @@ const Grid = styled.div`
   gap: 1.25rem;
   margin-bottom: 3rem;
 `;
-
 function MovieSearch(props: Props) {
   const navigate = useNavigate();
 
   const [keyword, setKeyword] = useState("");
 
-  const goToSearch = useCallback(
-    (e: React.FormEvent) => {
-      e.preventDefault();
+  const handleSubmit = useCallback(
+    (event: React.FormEvent) => {
+      event.preventDefault();
       if (keyword.trim().length > 0) {
         navigate(`/${props.category}/search/${keyword}`);
-        setKeyword(" ");
+        setKeyword("");
       }
     },
     [keyword, props.category, navigate]
   );
 
-  // useEffect(() => {
-  //   function enterEvent(e: any) {
-  //     e.preventDefault();
-  //     if (e.keyCode === 13) {
-  //       goToSearch();
-  //     }
-  //   }
-  //   document.addEventListener("keyup", enterEvent);
-  //   return () => {
-  //     document.removeEventListener("keyup", enterEvent);
-  //   };
-  // }, [keyword, goToSearch]);
+  const handleInputChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setKeyword(event.target.value);
+    },
+    []
+  );
 
   return (
-    <form onSubmit={goToSearch}>
+    <form onSubmit={handleSubmit}>
       <Input
         type="text"
         placeholder="Enter keyword"
         value={keyword}
-        onChange={(e) => setKeyword(e.target.value)}
+        onChange={handleInputChange}
       />
-      <button type="submit" onClick={goToSearch}>
-        Search
-      </button>
+      <button type="submit">Search</button>
     </form>
   );
 }
