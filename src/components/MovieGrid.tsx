@@ -15,7 +15,6 @@ interface Props {
   };
   category: string;
   keyword?: string;
-  onBlur?: () => void;
 }
 
 function MovieGrid(props: Props) {
