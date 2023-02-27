@@ -67,7 +67,7 @@ function MovieGrid(props: Props) {
         page: page + 1,
         query: keyword,
       };
-      response = await tmdbApi.search(props.category, params);
+      response = await tmdbApi.search(props.category, { params });
     }
     setItems([...items, ...response.results]);
     setPage(page + 1);
