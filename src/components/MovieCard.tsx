@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import apiConfig from '../api/apiConfig';
-import { category } from '../api/tmdbApi';
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import apiConfig from "../api/apiConfig";
+import { category } from "../api/tmdbApi";
 
 interface Props {
   item: {
@@ -16,7 +16,7 @@ interface Props {
 
 function MovieCard(props: Props) {
   const item = props.item;
-  const link = '/' + category[props.category] + '/' + item.id;
+  const link = "/" + category[props.category] + "/" + item.id;
 
   // Get background for MovieCard
   const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
