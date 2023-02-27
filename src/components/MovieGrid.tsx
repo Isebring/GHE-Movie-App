@@ -113,9 +113,8 @@ function MovieSearch(props: Props) {
   const [keyword, setKeyword] = useState(props.keyword ? props.keyword : "");
 
   const goToSearch = useCallback(() => {
-    const trimmedKeyword = keyword.trim();
-    if (trimmedKeyword.length > 0) {
-      navigate(`/${props.category}/search/${trimmedKeyword}`);
+    if (keyword.trim().length > 0) {
+      navigate(`/${props.category}/search/${keyword}`);
     }
   }, [keyword, props.category, navigate]);
 
