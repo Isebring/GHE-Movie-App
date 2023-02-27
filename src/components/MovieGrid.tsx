@@ -22,18 +22,15 @@ function MovieGrid(props: Props) {
         const params = {};
         switch (props.category) {
           case category.movie:
-            console.log("params for movie:", params);
             response = await tmdbApi.getMoviesList(movieType.upcoming, params);
             break;
           default:
-            console.log("params for tv:", params);
             response = await tmdbApi.getTvList(tvType.popular, params);
         }
       } else {
         const params = {
           query: keyword,
         };
-        console.log("params for search:", params);
         response = await tmdbApi.search(props.category, params);
       }
       setItems(response.results);
