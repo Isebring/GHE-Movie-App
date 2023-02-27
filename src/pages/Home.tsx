@@ -7,10 +7,10 @@ function Home() {
   return (
     <div>
       <h2>Trending Movies</h2>
+      <MovieList category={category.movie} type={movieType.popular} />
       <Link to="/movie">
         <OutlineButton>View more</OutlineButton>
       </Link>
-      <MovieList category={category.movie} type={movieType.popular} />
     </div>
   );
 }
