@@ -55,14 +55,23 @@ function Details() {
             </PosterContainer>
 
             <Info>
-              <div className="title">{item.title || item.name}</div>
-              <div className="genres">
+              <div className="title">
+                <h2>{item.title || item.name}</h2>
+              </div>
+              <Genres>
                 {item.genres &&
                   item.genres
                     .slice(0, 5)
-                    .map((genre, i) => <span key={i}>{genre.name}</span>)}
-              </div>
+                    .map((genre, i) => (
+                      <GenreItem key={i}>{genre.name}</GenreItem>
+                    ))}
+              </Genres>
               <p className="overview">{item.overview}</p>
+              <div className="cast">
+                <div>
+                  <h2>Casts</h2>
+                </div>
+              </div>
             </Info>
           </MovieContent>
         </>
@@ -107,6 +116,19 @@ const Info = styled.div`
   width: 70%;
   padding-left: 2rem;
   position: relative;
+`;
+
+const Genres = styled.div`
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+`;
+
+const GenreItem = styled.span`
+  padding: 0.2rem 0.2rem;
+  border: 2px solid white;
+  border-radius: 30px;
+  background: white;
 `;
 
 export default Details;
