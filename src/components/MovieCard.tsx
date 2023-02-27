@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import apiConfig from '../api/apiConfig';
 import { category } from '../api/tmdbApi';
 
@@ -22,15 +23,24 @@ function MovieCard(props: Props) {
 
   return (
     <Link to={link}>
-      <div style={{ backgroundImage: `url(${bg})` }}>
+      <Card style={{ backgroundImage: `url(${bg})` }}>
         <button>
           <i>Play</i>
         </button>
-      </div>
+      </Card>
       {/* Display title of Movie or TV Show */}
       <h3>{item.title || item.name}</h3>
     </Link>
   );
 }
 
+const Card = styled.div`
+position: relative
+background-position: top;
+background-repeat: no-repeat;
+background-size: cover;
+padding-top: 160%;
+border-radius: 10%;
+margin-bottom: 1 rem
+`;
 export default MovieCard;
