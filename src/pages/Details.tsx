@@ -52,7 +52,9 @@ function Details() {
               ></Poster>
             </PosterContainer>
 
-            <Info></Info>
+            <Info>
+              <div className="title">{item.title || item.name}</div>
+            </Info>
           </MovieContent>
         </>
       )}
