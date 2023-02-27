@@ -49,6 +49,31 @@ function MovieGrid(props: Props) {
     getList();
   }, [props.category, keyword]);
 
+  useEffect(() => {
+    function handleIntersection(entries: IntersectionObserverEntry[]) {
+      const target = entries[0];
+      if (target.isIntersecting) {
+        loadMore();
+      }
+    }
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null,
+      threshold: 0.1,
+    });
+
+    const sentinel = document.getElementById("sentinel");
+    if (sentinel) {
+      observer.observe(sentinel);
+    }
+
+    return () => {
+      if (sentinel) {
+        observer.unobserve(sentinel);
+      }
+    };
+  }, [loadMore]);
+
   async function loadMore() {
     let response = null;
     if (keyword === undefined) {
@@ -91,11 +116,7 @@ function MovieGrid(props: Props) {
           <MovieCard category={props.category} item={item} key={i} />
         ))}
       </Grid>
-      {page < totalPage ? (
-        <div>
-          <button onClick={loadMore}>Load more</button>
-        </div>
-      ) : null}
+      <div id="sentinel" />
     </>
   );
 }
