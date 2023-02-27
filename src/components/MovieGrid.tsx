@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import styled from "styled-components";
 import tmdbApi, { category, movieType, tvType } from "../api/tmdbApi";
 import MovieCard from "./MovieCard";
 
@@ -39,12 +40,19 @@ function MovieGrid(props: Props) {
     getList();
   }, [props.category, keyword]);
   return (
-    <div>
+    <Grid>
       {items.map((item, i) => (
         <MovieCard category={props.category} item={item} key={i} />
       ))}
-    </div>
+    </Grid>
   );
 }
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
+  gap: 20px;
+  margin-bottom: 3rem;
+`;
 
 export default MovieGrid;
