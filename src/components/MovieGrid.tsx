@@ -33,13 +33,13 @@ function MovieGrid(props: Props) {
             response = await tmdbApi.getMoviesList(movieType.upcoming, params);
             break;
           default:
-            response = await tmdbApi.getTvList(tvType.popular, params);
+            response = await tmdbApi.getTvList(tvType.popular, { params });
         }
       } else {
         const params = {
           query: keyword,
         };
-        response = await tmdbApi.search(props.category, params);
+        response = await tmdbApi.search(props.category, { params });
       }
       setItems(response.results);
       setTotalPage(response.total_pages);
@@ -58,7 +58,7 @@ function MovieGrid(props: Props) {
           response = await tmdbApi.getMoviesList(movieType.upcoming, params);
           break;
         default:
-          response = await tmdbApi.getTvList(tvType.popular, params);
+          response = await tmdbApi.getTvList(tvType.popular, { params });
       }
     } else {
       const params = {
@@ -90,7 +90,7 @@ function MovieGrid(props: Props) {
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
-  gap: 20px;
+  gap: 1.25rem;
   margin-bottom: 3rem;
 `;
 
