@@ -57,16 +57,16 @@ const NavItem = styled.li<NavItemProps>`
   font-family: system-ui, Arial, sans-serif;
   margin: 0 0.5rem;
   font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
-  border-bottom: ${({ active }) => (active ? '3px solid red' : 'normal')};
+  border-bottom: ${({ active }) => (active ? '3px solid white' : 'normal')};
   
 
   & a {
     text-decoration: none;
-    color: ${({ active }) => (active ? 'red' : 'black')};
+    color: ${({ active }) => (active ? 'orange' : 'white')};
   }
   
   & a:hover {
-    color: red
+    color: orange;
     
   }
 
