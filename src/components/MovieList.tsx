@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import tmdbApi, { category } from '../../api/tmdbApi';
-import MovieCard from '../MovieCard';
+import tmdbApi, { category } from '../api/tmdbApi';
+import MovieCard from './MovieCard';
 
 interface Props {
   category: string;
   type: string;
-  id: number;
+  id?: number;
 }
 
-function Movielist(props: Props) {
+function MovieList(props: Props) {
   const [items, setItems] = useState([]);
 
   interface Movie {
@@ -34,7 +35,7 @@ function Movielist(props: Props) {
             response = await tmdbApi.getTvList(props.type, { params });
         }
       } else {
-        response = await tmdbApi.similar(props.category, props.id);
+        response = await tmdbApi.similar(props.category, props.id || 0);
       }
       setItems(response.results);
     };
@@ -42,7 +43,7 @@ function Movielist(props: Props) {
   }, []);
 
   return (
-    <div>
+    <MovielistWrapper>
       <Swiper grabCursor={true} spaceBetween={10} slidesPerView={'auto'}>
         {items.map((item: Movie, i: number) => (
           <SwiperSlide key={i}>
@@ -50,8 +51,22 @@ function Movielist(props: Props) {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </MovielistWrapper>
   );
 }
 
-export default Movielist;
+const MovielistWrapper = styled.div`
+  .swiper-slide {
+    width: 15%;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 30%;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 40%;
+  }
+`;
+
+export default MovieList;
