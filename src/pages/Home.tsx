@@ -1,7 +1,13 @@
-function Home()  {
+function Home() {
   return (
-    <div>Home</div>
-  )
+    <>
+      <div>
+        <div>
+          <h2>Top Rated Movies</h2>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default Home
+export default Home;
