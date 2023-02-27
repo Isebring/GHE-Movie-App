@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import styled from 'styled-components';
 import apiConfig from '../../api/apiConfig';
 import tmdbApi from '../../api/tmdbApi';
+import CastList from './CastList';
 
 interface MovieDetails {
   id: number;
@@ -71,6 +72,7 @@ function Details() {
                 <div>
                   <h2>Casts</h2>
                 </div>
+                <CastList id={item.id} />
               </div>
             </Info>
           </MovieContent>

@@ -7,10 +7,16 @@ interface Props {
   id: number;
 }
 
+interface Cast {
+  id: number;
+  name: string;
+  profile_path: string | null;
+}
+
 function CastList(props: Props) {
   const { category } = useParams<{ category: string }>();
 
-  const [casts, setCasts] = useState([]);
+  const [casts, setCasts] = useState<Cast[]>([]);
 
   useEffect(() => {
     const getCredits = async () => {
@@ -25,11 +31,13 @@ function CastList(props: Props) {
   return (
     <div className="casts">
       {casts.map((item, i) => (
-        <div key={i} className="casts-item">
+        <div key={item.id} className="casts-item">
           <div
             className="casts-item-img"
             style={{
-              backgroundImage: `url(${apiConfig.w500Image(item.profile_path)})`,
+              backgroundImage: item.profile_path
+                ? `url(${apiConfig.w500Image(item.profile_path)})`
+                : '',
             }}
           ></div>
           <p className="casts-item-name">{item.name}</p>
