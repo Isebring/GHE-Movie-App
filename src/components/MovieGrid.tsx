@@ -110,26 +110,31 @@ const Grid = styled.div`
 function MovieSearch(props: Props) {
   const navigate = useNavigate();
 
-  const [keyword, setKeyword] = useState(props.keyword ? props.keyword : "");
+  const [keyword, setKeyword] = useState("");
 
-  const goToSearch = useCallback(() => {
-    if (keyword.trim().length > 0) {
-      navigate(`/${props.category}/search/${keyword}`);
-    }
-  }, [keyword, props.category, navigate]);
-
-  useEffect(() => {
-    function enterEvent(e: any) {
+  const goToSearch = useCallback(
+    (e: React.FormEvent) => {
       e.preventDefault();
-      if (e.keyCode === 13) {
-        goToSearch();
+      if (keyword.trim().length > 0) {
+        navigate(`/${props.category}/search/${keyword}`);
+        setKeyword(" ");
       }
-    }
-    document.addEventListener("keyup", enterEvent);
-    return () => {
-      document.removeEventListener("keyup", enterEvent);
-    };
-  }, [keyword, goToSearch]);
+    },
+    [keyword, props.category, navigate]
+  );
+
+  // useEffect(() => {
+  //   function enterEvent(e: any) {
+  //     e.preventDefault();
+  //     if (e.keyCode === 13) {
+  //       goToSearch();
+  //     }
+  //   }
+  //   document.addEventListener("keyup", enterEvent);
+  //   return () => {
+  //     document.removeEventListener("keyup", enterEvent);
+  //   };
+  // }, [keyword, goToSearch]);
 
   return (
     <form onSubmit={goToSearch}>
@@ -139,7 +144,9 @@ function MovieSearch(props: Props) {
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
       />
-      <button onClick={goToSearch}>Search</button>
+      <button type="submit" onClick={goToSearch}>
+        Search
+      </button>
     </form>
   );
 }
