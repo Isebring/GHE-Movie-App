@@ -139,6 +139,7 @@ function MovieSearch(props: Props) {
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
       />
+      <button onClick={goToSearch}>Search</button>
     </form>
   );
 }
