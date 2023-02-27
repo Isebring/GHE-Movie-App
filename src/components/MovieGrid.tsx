@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import styled from "styled-components";
 import tmdbApi, { category, movieType, tvType } from "../api/tmdbApi";
+import Input from "./Input";
 import MovieCard from "./MovieCard";
 
 interface Props {
@@ -13,6 +14,7 @@ interface Props {
     backdrop_path: string;
   };
   category: string;
+  keyword?: string;
 }
 
 function MovieGrid(props: Props) {
@@ -73,6 +75,17 @@ function MovieGrid(props: Props) {
 
   return (
     <>
+      <MovieSearch
+        category={props.category}
+        keyword={keyword}
+        item={{
+          id: 0,
+          title: "",
+          name: "",
+          poster_path: "",
+          backdrop_path: "",
+        }}
+      />
       <Grid>
         {items.map((item, i) => (
           <MovieCard category={props.category} item={item} key={i} />
@@ -93,5 +106,42 @@ const Grid = styled.div`
   gap: 1.25rem;
   margin-bottom: 3rem;
 `;
+
+function MovieSearch(props: Props) {
+  const navigate = useNavigate();
+
+  const [keyword, setKeyword] = useState(props.keyword ? props.keyword : "");
+
+  const goToSearch = useCallback(() => {
+    const trimmedKeyword = keyword.trim();
+    if (trimmedKeyword.length > 0) {
+      navigate(`/${props.category}/search/${trimmedKeyword}`);
+    }
+  }, [keyword, props.category, navigate]);
+
+  useEffect(() => {
+    function enterEvent(e: any) {
+      e.preventDefault();
+      if (e.keyCode === 13) {
+        goToSearch();
+      }
+    }
+    document.addEventListener("keyup", enterEvent);
+    return () => {
+      document.removeEventListener("keyup", enterEvent);
+    };
+  }, [keyword, goToSearch]);
+
+  return (
+    <form onSubmit={goToSearch}>
+      <Input
+        type="text"
+        placeholder="Enter keyword"
+        value={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
+      />
+    </form>
+  );
+}
 
 export default MovieGrid;
