@@ -55,18 +55,6 @@ function MovieList(props: Props) {
   );
 }
 
-const MovielistWrapper = styled.div`
-  .swiper-slide {
-    width: 15%;
-  }
-
-  @media screen and (max-width: 768px) {
-    width: 30%;
-  }
-
-  @media screen and (max-width: 480px) {
-    width: 40%;
-  }
-`;
+const MovielistWrapper = styled.div``;
 
 export default MovieList;
