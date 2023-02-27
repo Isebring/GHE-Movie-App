@@ -49,6 +49,7 @@ function MovieGrid(props: Props) {
     getList();
   }, [props.category, keyword]);
 
+  // TODO: separate into its own component
   useEffect(() => {
     function handleIntersection(entries: IntersectionObserverEntry[]) {
       const target = entries[0];
