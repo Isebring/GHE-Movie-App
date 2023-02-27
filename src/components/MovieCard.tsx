@@ -35,13 +35,13 @@ function MovieCard(props: Props) {
 }
 
 const Card = styled.div`
-position: relative
-background-position: top;
-background-repeat: no-repeat;
-background-size: cover;
-padding-top: 160%;
-border-radius: 10%;
-margin-bottom: 1 rem
+  position: relative;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 160%;
+  border-radius: 30px;
+  margin-bottom: 1 rem;
 `;
 
 export default MovieCard;
