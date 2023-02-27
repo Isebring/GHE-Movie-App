@@ -43,4 +43,5 @@ padding-top: 160%;
 border-radius: 10%;
 margin-bottom: 1 rem
 `;
+
 export default MovieCard;
