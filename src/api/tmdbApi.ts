@@ -12,9 +12,9 @@ export const movieType: { [key: string]: string } = {
 };
 
 export const tvType: { [key: string]: string } = {
-  upcoming: 'popular',
-  popular: 'top_rated',
-  top_rated: 'on_the_air',
+  upcoming: 'upcoming',
+  popular: 'popular',
+  top_rated: 'top_rated',
 };
 
 interface TmdbApi {
