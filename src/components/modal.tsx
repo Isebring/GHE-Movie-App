@@ -28,10 +28,12 @@ Modal.propTypes = {
 };
 
 export function ModalContent(props: ModalProps) {
-  const contentRef = useRef(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const closeModal = () => {
-    // contentRef.current.parentNode.classList.remove("active");
+    if (contentRef.current) {
+      (contentRef.current.parentNode as Element).classList.remove("active");
+    }
     if (props.onClose) props.onClose();
   };
 

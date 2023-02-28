@@ -27,7 +27,7 @@ function HeroSlide() {
           movieType.popular,
           { params }
         );
-        setMovieItems(response.results.slice(0, 5));
+        setMovieItems(response.results.slice(0, 4));
         console.log("response:", response);
       } catch (error) {
         console.log("Error:", error);
@@ -38,6 +38,7 @@ function HeroSlide() {
 
   return (
     <div>
+      <SwiperContainer>
         <Swiper
           modules={[Autoplay]}
           grabCursor={true}
@@ -60,8 +61,9 @@ function HeroSlide() {
           ))}
         </Swiper>
     {
-      movieItems.map((item, i) => <TrailerModal key={i} item={item} />
+      movieItems.map((item, i) => <TrailerModal key={i} item={item} />)
     }
+    </SwiperContainer>
     </div>
   );
 }
@@ -76,17 +78,21 @@ const HeroSlideItem = (props: any) => {
 
   const setModalActive = async () => {
     const modal = document.querySelector(`#modal_${item.id}`);
-
-    const videos = await tmdbApi.getVideos(category.movie, item.id);
-
-    if (videos.results.length > 0) {
-      const videoSrc = "https://www.youtube.com/embed/"
-     + videos.results[0].key;
-     modal?.querySelector(".modal__content > iframe")?.setAttribute('src', videoSrc);
-    } else {
-      modal.?querySelector('.modal__content').innerHTML = "No Trailer";
+  
+    if (modal) {
+      const videos = await tmdbApi.getVideos(category.movie, item.id);
+  
+      if (videos.results.length > 0) {
+        const videoSrc = "https://www.youtube.com/embed/" + videos.results[0].key;
+        const iframe = modal.querySelector(".modal__content > iframe");
+        if (iframe) {
+          iframe.setAttribute("src", videoSrc);
+        }
+      } else {
+        modal.querySelector('.modal__content')!.innerHTML = "No Trailer";
+      }
+      modal.classList.toggle('active');
     }
-    modal?.classList.toggle('active');
   }
 
   return (
@@ -99,7 +105,7 @@ const HeroSlideItem = (props: any) => {
             <Buttons onClick={() => navigate("/movie/" + item.id)}>
               Watch now
             </Buttons>
-            <OutlineButton onClick={() => console.log("trailer")}>
+            <OutlineButton onClick={setModalActive}>
               Watch Trailer
             </OutlineButton>
           </ButtonFlex>
@@ -110,21 +116,37 @@ const HeroSlideItem = (props: any) => {
   );
 };
 
-const TrailerModal = (props) => {
+// interface ModalProps {
+//   active: boolean;
+//   id: string;
+//   children: React.ReactNode;
+//   onClose?: () => void;
+// }
+
+const TrailerModal: React.FC<{item: any}> = (props) => {
   const item = props.item;
 
-  const iframeRef = useRef(null);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
-  const onClose = () => iframeRef.current.setAttribute("src", "");
+
+  const onClose = () => {
+    if (iframeRef.current) {
+      iframeRef.current.setAttribute("src", "");
+    }
+  };
+
 
   return (
   <Modal active={false} id={`modal_${item.id}`}>
-    <ModalContent onClose={onClose}>
-      <iframe ref={iframeRef} width="100%" height="500px" title="trailer"</iframe>
+      <ModalContent onClose={onClose} id={`modal_${item.id}`} active={false}>
+    <iframe ref={iframeRef} width="50%" height="500px" title="trailer"></iframe>
     </ModalContent>
-  </Modal>;
+  </Modal>
   )
 };
+
+const ModalVideo = styled.div`
+`;
 
 const Flex = styled.div`
   display: flex;
@@ -169,6 +191,7 @@ const H2Title = styled.h2`
 `;
 
 const SwiperContainer = styled.div``;
+
 
 const SwiperItem = styled.div``;
 
