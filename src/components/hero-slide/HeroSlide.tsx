@@ -93,6 +93,16 @@ const HeroSlideItem = (props: any) => {
   );
 };
 
+// const TrailerModal = (props) => {
+//   const item = props.item;
+
+//   const iframeRef = useRef(null);
+
+//   const onClose = () => iframeRef.current.setAttribute("src", "");
+
+//   return <Modal></Modal>;
+// };
+
 const Flex = styled.div`
   display: flex;
   backdrop-filter: brightness(0.4);
