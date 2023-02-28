@@ -5,16 +5,16 @@ import tmdbApi, { category, movieType, tvType } from "../api/tmdbApi";
 import Input from "./Input";
 import MovieCard from "./MovieCard";
 
+interface Props {
+  category: string;
+  keyword?: string;
+}
 interface Movie {
   id: number;
   title: string;
   name: string;
   poster_path: string;
   backdrop_path: string;
-}
-interface Props {
-  category: string;
-  keyword?: string;
 }
 
 function MovieGrid(props: Props) {

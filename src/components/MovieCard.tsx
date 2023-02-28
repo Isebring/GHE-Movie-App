@@ -3,17 +3,17 @@ import styled from "styled-components";
 import apiConfig from "../api/apiConfig";
 import { category } from "../api/tmdbApi";
 
+interface Props {
+  item: Movie;
+  category: string;
+}
+
 interface Movie {
   id: number;
   title: string;
   name: string;
   poster_path: string;
   backdrop_path: string;
-}
-// bryt ut item till ett "Movie"-interface
-interface Props {
-  item: Movie;
-  category: string;
 }
 
 function MovieCard(props: Props) {
