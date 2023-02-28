@@ -82,9 +82,9 @@ const HeroSlideItem = (props: any) => {
     if (videos.results.length > 0) {
       const videoSrc = "https://www.youtube.com/embed/"
      + videos.results[0].key;
-     modal.querySelector(".modal__content > iframe")?.setAttribute('src', videoSrc);
+     modal?.querySelector(".modal__content > iframe")?.setAttribute('src', videoSrc);
     } else {
-      modal.querySelector('.modal__content').innerHTML = "No Trailer";
+      modal.?querySelector('.modal__content').innerHTML = "No Trailer";
     }
     modal?.classList.toggle('active');
   }
