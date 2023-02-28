@@ -3,6 +3,7 @@ import styled from "styled-components";
 import apiConfig from "../api/apiConfig";
 import { category } from "../api/tmdbApi";
 
+// bryt ut item till ett "Movie"-interface
 interface Props {
   item: {
     id: number;

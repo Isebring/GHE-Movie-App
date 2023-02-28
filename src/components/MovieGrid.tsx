@@ -5,6 +5,7 @@ import tmdbApi, { category, movieType, tvType } from "../api/tmdbApi";
 import Input from "./Input";
 import MovieCard from "./MovieCard";
 
+// bryt ut item till ett "Movie"-interface
 interface Props {
   item: {
     id: number;
@@ -49,7 +50,7 @@ function MovieGrid(props: Props) {
     getList();
   }, [props.category, keyword]);
 
-  // TODO: separate into its own component
+  // TODO: separate into its own component || useInfiniteMovies hook
   useEffect(() => {
     function handleIntersection(entries: IntersectionObserverEntry[]) {
       const target = entries[0];
