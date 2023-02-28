@@ -1,7 +1,14 @@
 import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
 
-function Modal(props) {
+interface ModalProps {
+  active: boolean;
+  id: string;
+  children: React.ReactNode;
+  onClose?: () => void;
+}
+
+function Modal(props: ModalProps) {
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -15,16 +22,16 @@ function Modal(props) {
   );
 }
 
-Modal.PropTypes = {
+Modal.propTypes = {
   active: PropTypes.bool,
   id: PropTypes.string,
 };
 
-export function ModalContent(props) {
+export function ModalContent(props: ModalProps) {
   const contentRef = useRef(null);
 
   const closeModal = () => {
-    contentRef.current.parentNode.classList.remove("active");
+    // contentRef.current.parentNode.classList.remove("active");
     if (props.onClose) props.onClose();
   };
 
@@ -39,7 +46,7 @@ export function ModalContent(props) {
 }
 
 ModalContent.propTypes = {
-  onclose: PropTypes.func,
+  onClose: PropTypes.func,
 };
 
 export default Modal;

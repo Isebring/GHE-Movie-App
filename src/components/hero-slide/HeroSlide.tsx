@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import apiConfig from "../../api/apiConfig";
 import axiosClient from "../../api/axiosClient";
-import tmdbApi, { movieType } from "../../api/tmdbApi";
+import tmdbApi, { category, movieType } from "../../api/tmdbApi";
 import Buttons, { OutlineButton } from "../buttons/Button";
+import Modal, { ModalContent } from "../modal";
 
 interface MoviesResponse {
   results: { backdrop_path: string }[];
@@ -37,7 +38,6 @@ function HeroSlide() {
 
   return (
     <div>
-      <SwiperContainer>
         <Swiper
           modules={[Autoplay]}
           grabCursor={true}
@@ -59,7 +59,9 @@ function HeroSlide() {
             </SwiperSlide>
           ))}
         </Swiper>
-      </SwiperContainer>
+    {
+      movieItems.map((item, i) => <TrailerModal key={i} item={item} />
+    }
     </div>
   );
 }
@@ -71,6 +73,21 @@ const HeroSlideItem = (props: any) => {
   const background = apiConfig.originalImage(
     item.backdrop_path ? item.backdrop_path : item.poster_path
   );
+
+  const setModalActive = async () => {
+    const modal = document.querySelector(`#modal_${item.id}`);
+
+    const videos = await tmdbApi.getVideos(category.movie, item.id);
+
+    if (videos.results.length > 0) {
+      const videoSrc = "https://www.youtube.com/embed/"
+     + videos.results[0].key;
+     modal.querySelector(".modal__content > iframe")?.setAttribute('src', videoSrc);
+    } else {
+      modal.querySelector('.modal__content').innerHTML = "No Trailer";
+    }
+    modal?.classList.toggle('active');
+  }
 
   return (
     <div style={{ backgroundImage: `url(${background})` }}>
@@ -93,15 +110,21 @@ const HeroSlideItem = (props: any) => {
   );
 };
 
-// const TrailerModal = (props) => {
-//   const item = props.item;
+const TrailerModal = (props) => {
+  const item = props.item;
 
-//   const iframeRef = useRef(null);
+  const iframeRef = useRef(null);
 
-//   const onClose = () => iframeRef.current.setAttribute("src", "");
+  const onClose = () => iframeRef.current.setAttribute("src", "");
 
-//   return <Modal></Modal>;
-// };
+  return (
+  <Modal active={false} id={`modal_${item.id}`}>
+    <ModalContent onClose={onClose}>
+      <iframe ref={iframeRef} width="100%" height="500px" title="trailer"</iframe>
+    </ModalContent>
+  </Modal>;
+  )
+};
 
 const Flex = styled.div`
   display: flex;
