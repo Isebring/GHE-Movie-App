@@ -36,30 +36,33 @@ function HeroSlide() {
   }, []);
 
   return (
-        <Swiper
-          modules={[Autoplay]}
-          grabCursor={true}
-          spaceBetween={0}
-          slidesPerView={1}
-          autoplay={{ delay: 3500 }}
-        >
-          {movieItems.map((item, i) => (
-            <SwiperSlide key={i}>
-              {({ isActive }) => (
-                <SwiperItem>
-                  <HeroSlideItem
-                    item={item}
-                    className={`${isActive ? "active" : ""}`}
-                  />
-                  {/* // <img src={apiConfig.originalImage(item.backdrop_path)} /> */}
-                </SwiperItem>
-              )}
-            </SwiperSlide>
-          ))}
-        </Swiper> )
-    {/* {
+    <Swiper
+      modules={[Autoplay]}
+      grabCursor={true}
+      spaceBetween={0}
+      slidesPerView={1}
+      autoplay={{ delay: 3500 }}
+    >
+      {movieItems.map((item, i) => (
+        <SwiperSlide key={i}>
+          {({ isActive }) => (
+            <SwiperItem>
+              <HeroSlideItem
+                item={item}
+                className={`${isActive ? "active" : ""}`}
+              />
+              {/* // <img src={apiConfig.originalImage(item.backdrop_path)} /> */}
+            </SwiperItem>
+          )}
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  );
+  {
+    /* {
       movieItems.map((item, i) => <TrailerModal key={i} item={item} />)
-    } */}
+    } */
+  }
 }
 
 const HeroSlideItem = (props: any) => {
@@ -72,10 +75,10 @@ const HeroSlideItem = (props: any) => {
 
   // const setModalActive = async () => {
   //   const modal = document.querySelector(`#modal_${item.id}`);
-  
+
   //   if (modal) {
   //     const videos = await tmdbApi.getVideos(category.movie, item.id);
-  
+
   //     if (videos.results.length > 0) {
   //       const videoSrc = "https://www.youtube.com/embed/" + videos.results[0].key;
   //       const iframe = modal.querySelector(".modal__content > iframe");
@@ -100,9 +103,7 @@ const HeroSlideItem = (props: any) => {
               Watch now
             </Buttons>
             <HoverButton>
-            <OutlineButton>
-              Explore now
-            </OutlineButton>
+              <OutlineButton>More info</OutlineButton>
             </HoverButton>
           </ButtonFlex>
         </Center>
@@ -124,13 +125,11 @@ const HeroSlideItem = (props: any) => {
 
 //   const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
-
 //   const onClose = () => {
 //     if (iframeRef.current) {
 //       iframeRef.current.setAttribute("src", "");
 //     }
 //   };
-
 
 //   return (
 //   <Modal active={false} id={`modal_${item.id}`}>
@@ -142,15 +141,17 @@ const HeroSlideItem = (props: any) => {
 // };
 
 const HoverButton = styled.div`
-& :hover {
-background: white;
-color: orange;
-}
+  & :hover {
+    background: #ff5733;
+  }
 `;
 
 const Flex = styled.div`
   display: flex;
   backdrop-filter: brightness(0.4);
+  @media (max-width: 850px) {
+    flex-direction: column;
+  }
 `;
 
 const ButtonFlex = styled.div`
@@ -176,7 +177,11 @@ const W500Image = styled.img`
   display: flex;
   padding: 1.5rem;
   border-radius: 2.2rem;
-  filter: brightness(1);
+  filter: brightness(1.1);
+  @media (max-width: 850px) {
+    width: 75%;
+    height: 70%;
+  }
 `;
 
 const H2Title = styled.h2`
@@ -190,9 +195,11 @@ const H2Title = styled.h2`
 `;
 
 const SwiperItem = styled.div`
-img {
-height: 100%;
-}
+  img {
+    height: 100%;
+  }
+  @media (max-width: 850px) {
+  }
 `;
 
 export default HeroSlide;
