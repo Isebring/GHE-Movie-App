@@ -56,14 +56,15 @@ const CastItem = styled.div`
   flex-direction: column;
   align-items: center;
   height: 300px;
-  width: 200px;
+  width: 300px;
+  margin-right: 0.3rem;
 `;
 
 const CastItemImage = styled.div`
   width: 100%;
-  height: 100%;
+  height: 75%;
   margin-bottom: 8px;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   object-fit: cover;
@@ -72,6 +73,8 @@ const CastItemImage = styled.div`
 const CastItemName = styled.p`
   margin: 0;
   font-size: 14px;
+  max-width: 100%;
+  text-align: center;
 `;
 
 export default CastList;

@@ -96,26 +96,28 @@ const Banner = styled.div`
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 1);
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 0;
   }
+
   text-align: center;
 `;
 
 const MovieContent = styled.div`
-color: white;
-display: flex;
-flex-wrap: row;
-justify-content: center;
-align-items: flex-start;
-max-width: 90%
-margin: 0 auto;
-padding: 0 1rem;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-z-index: 1;
+  color: white;
+  display: flex;
+  flex-wrap: row;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 90%
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 `;
 
 const PosterContainer = styled.div`
