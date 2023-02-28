@@ -5,21 +5,21 @@ import tmdbApi, { category, movieType, tvType } from "../api/tmdbApi";
 import Input from "./Input";
 import MovieCard from "./MovieCard";
 
+interface Movie {
+  id: number;
+  title: string;
+  name: string;
+  poster_path: string;
+  backdrop_path: string;
+}
 // bryt ut item till ett "Movie"-interface
 interface Props {
-  item: {
-    id: number;
-    title: string;
-    name: string;
-    poster_path: string;
-    backdrop_path: string;
-  };
   category: string;
   keyword?: string;
 }
 
 function MovieGrid(props: Props) {
-  const [items, setItems] = useState<Props["item"][]>([]);
+  const [items, setItems] = useState<Movie[]>([]);
 
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
@@ -102,17 +102,7 @@ function MovieGrid(props: Props) {
 
   return (
     <>
-      <MovieSearch
-        category={props.category}
-        keyword={keyword}
-        item={{
-          id: 0,
-          title: "",
-          name: "",
-          poster_path: "",
-          backdrop_path: "",
-        }}
-      />
+      <MovieSearch category={props.category} keyword={keyword} />
       <Grid>
         {items.map((item, i) => (
           <MovieCard category={props.category} item={item} key={i} />
