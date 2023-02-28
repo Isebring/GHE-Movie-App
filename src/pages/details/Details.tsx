@@ -68,12 +68,12 @@ function Details() {
                     ))}
               </Genres>
               <p className="overview">{item.overview}</p>
-              <div className="cast">
+              <Cast>
                 <div>
                   <h2>Casts</h2>
                 </div>
                 <CastList id={item.id} />
-              </div>
+              </Cast>
             </Info>
           </MovieContent>
         </>
@@ -83,46 +83,59 @@ function Details() {
 }
 
 const Banner = styled.div`
-  height: 60vh;
+  height: 100vh;
   position: relative;
   background-position: center;
+  background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: linear-gradient(
-    to left,
-    rgba(255, 0, 0, 0),
-    rgba(255, 0, 0, 1)
-  );
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 1);
+    z-index: 0;
+  }
+  text-align: center;
 `;
 
 const MovieContent = styled.div`
-background-color: rgba(0, 0, 0, 0.7);
 color: white;
 display: flex;
-justify-content: flex-start;
+flex-wrap: row;
+justify-content: center;
 align-items: flex-start;
-max-width: 1260px
-margin-left: auto;
-margin-right; auto;
-margin-top: -200px;
-position: relative;
-padding: 0 2rem;
+max-width: 90%
+margin: 0 auto;
+padding: 0 1rem;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 1;
 `;
 
 const PosterContainer = styled.div`
-  flex: 1;
+  width: 40%;
+  height: auto;
+  margin: 1rem;
 `;
 
 const Poster = styled.div`
-  background-position: center;
+  background-position: center center;
   background-size: cover;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   border-radius: 30px;
-  padding-top: 165%;
+  padding-top: 150%;
 `;
 
 const Info = styled.div`
-  width: 70%;
+  width: 60%;
+  max-width: 800px;
   padding-left: 2rem;
   position: relative;
 `;
@@ -134,10 +147,14 @@ const Genres = styled.div`
 `;
 
 const GenreItem = styled.span`
-  padding: 0.1rem 0.1rem;
+  padding: 0.4rem;
   border: 2px solid white;
   border-radius: 30px;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.5);
+`;
+
+const Cast = styled.div`
+  margin-top: 2rem;
 `;
 
 export default Details;

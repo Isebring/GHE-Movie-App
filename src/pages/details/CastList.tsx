@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import styled from 'styled-components';
 import apiConfig from '../../api/apiConfig';
 import tmdbApi from '../../api/tmdbApi';
 
@@ -29,22 +30,48 @@ function CastList(props: Props) {
   }, [category, props.id]);
 
   return (
-    <div className="casts">
-      {casts.map((item, i) => (
-        <div key={item.id} className="casts-item">
-          <div
-            className="casts-item-img"
+    <CastFlex>
+      {casts.map((item) => (
+        <CastItem key={item.id}>
+          <CastItemImage
             style={{
               backgroundImage: item.profile_path
                 ? `url(${apiConfig.w500Image(item.profile_path)})`
                 : '',
             }}
-          ></div>
-          <p className="casts-item-name">{item.name}</p>
-        </div>
+          />
+          <CastItemName>{item.name}</CastItemName>
+        </CastItem>
       ))}
-    </div>
+    </CastFlex>
   );
 }
+const CastFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const CastItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 300px;
+  width: 200px;
+`;
+
+const CastItemImage = styled.div`
+  width: 100%;
+  height: 100%;
+  margin-bottom: 8px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+`;
+
+const CastItemName = styled.p`
+  margin: 0;
+  font-size: 14px;
+`;
 
 export default CastList;
