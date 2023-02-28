@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import SwiperCore, { Autoplay } from 'swiper';
+import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import apiConfig from "../../api/apiConfig";
 import axiosClient from "../../api/axiosClient";
 import tmdbApi, { movieType } from "../../api/tmdbApi";
-import Button, { OutlineButton } from "../buttons/Button";
-
+import Buttons, { OutlineButton } from "../buttons/Button";
 
 interface MoviesResponse {
   results: { backdrop_path: string }[];
@@ -19,114 +18,125 @@ function HeroSlide() {
 
   useEffect(() => {
     const getMovies = async () => {
-      const params = {page: 1};
+      const params = { page: 1 };
       try {
-        console.log('axiosClient:', axiosClient);
-        console.log('params:', params);
-        const response: MoviesResponse = await tmdbApi.getMoviesList(movieType.popular, {params});
-        setMovieItems(response.results.slice(1, 4));
-        console.log('response:', response);
+        console.log("axiosClient:", axiosClient);
+        console.log("params:", params);
+        const response: MoviesResponse = await tmdbApi.getMoviesList(
+          movieType.popular,
+          { params }
+        );
+        setMovieItems(response.results.slice(0, 5));
+        console.log("response:", response);
       } catch (error) {
-        console.log('Error:', error);
+        console.log("Error:", error);
       }
     };
     getMovies();
   }, []);
 
-  return(
+  return (
     <div>
       <SwiperContainer>
-      <Swiper modules={[Autoplay]} grabCursor={true} spaceBetween={0} slidesPerView={1} autoplay={{ delay: 3000 }} >
-        {movieItems.map((item, i) => (
-          <SwiperSlide key={i}>
-            {({isActive}) => (
-              <SwiperItem>
-              <HeroSlideItem item={item} className={`${isActive ? 'active' : ''}`} />
-              {/* // <img src={apiConfig.originalImage(item.backdrop_path)} /> */}
-              </SwiperItem>
-            )}
-          </SwiperSlide>
-        ))
-            }
-      </Swiper>
+        <Swiper
+          modules={[Autoplay]}
+          grabCursor={true}
+          spaceBetween={0}
+          slidesPerView={1}
+          autoplay={{ delay: 3500 }}
+        >
+          {movieItems.map((item, i) => (
+            <SwiperSlide key={i}>
+              {({ isActive }) => (
+                <SwiperItem>
+                  <HeroSlideItem
+                    item={item}
+                    className={`${isActive ? "active" : ""}`}
+                  />
+                  {/* // <img src={apiConfig.originalImage(item.backdrop_path)} /> */}
+                </SwiperItem>
+              )}
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </SwiperContainer>
     </div>
   );
 }
 
-// interface HeroSlideItemProps {
-//   item: {
-//     backdrop_path: string ;
-//     poster_path: string;
-//     title: string;
-//     overview: string;
-//     id: number;
-//   };
-//   className: string;
-// }
-
-  const HeroSlideItem = (props: any) => {
+const HeroSlideItem = (props: any) => {
   const navigate = useNavigate();
   const item = props.item;
 
-  const background = apiConfig.originalImage(item.backdrop_path ? item.backdrop_path : item.poster_path);
+  const background = apiConfig.originalImage(
+    item.backdrop_path ? item.backdrop_path : item.poster_path
+  );
 
   return (
-    <div
-      className={`${props.className}`}
-      style={{backgroundImage: `url(${background})`}}>
-
-    <div>
-      <div>
-        <H2Title>{item.title}</H2Title>
-        <div>{item.overview}</div>
-        <Button onClick={() => navigate('/movie/' + item.id)}>
-          Watch now
-        </Button>
-        <OutlineButton onClick={() => console.log('trailer')}>
-          Watch Trailer
-        </OutlineButton>
-      </div>
-      <div></div>
-      <W500Image src={apiConfig.w500Image(item.poster_path)} alt="" />
-      </div>
+    <div style={{ backgroundImage: `url(${background})` }}>
+      <Flex>
+        <Center>
+          <H2Title>{item.title}</H2Title>
+          <Overview>{item.overview}</Overview>
+          <ButtonFlex>
+            <Buttons onClick={() => navigate("/movie/" + item.id)}>
+              Watch now
+            </Buttons>
+            <OutlineButton onClick={() => console.log("trailer")}>
+              Watch Trailer
+            </OutlineButton>
+          </ButtonFlex>
+        </Center>
+        <W500Image src={apiConfig.w500Image(item.poster_path)} alt="" />
+      </Flex>
     </div>
-  )
+  );
+};
 
-}
+const Flex = styled.div`
+  display: flex;
+  backdrop-filter: brightness(0.4);
+`;
 
-const originalImage = styled.img`
-height: 100%;
-width: 100%;
+const ButtonFlex = styled.div`
+  display: flex;
+  margin-top: 0.5rem;
+`;
+
+const Center = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Overview = styled.div`
+  color: white;
+  font-family: "Inter", system-ui, Arial, sans-serif;
+  text-align: center;
+  padding: 0.5rem;
+  font-weight: 500;
 `;
 
 const W500Image = styled.img`
- height: 500px;
+  display: flex;
+  padding: 1.2rem;
+  border-radius: 2rem;
+  filter: brightness(1);
 `;
 
 const H2Title = styled.h2`
-  font-size: 5rem;
+  font-size: 4.2rem;
   font-weight: 700;
-  line-height: 1;
   color: white;
-  position: relative;
   display: flex;
-  justify-content: center;
-  font-family: system-ui, Arial, sans-serif;
+  font-family: "Poppins", system-ui, Arial, sans-serif;
+  padding: 0.2rem;
+  text-align: center;
 `;
 
-const SwiperContainer = styled.div`
-  height: 100%;
-  display: flex;
-`;
+const SwiperContainer = styled.div``;
 
-const SwiperItem = styled.div`
-    img {
-      height: 100vh;
-    }
-      
-  }
-`;
-
+const SwiperItem = styled.div``;
 
 export default HeroSlide;
