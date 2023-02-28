@@ -12,7 +12,6 @@ interface Movie {
   poster_path: string;
   backdrop_path: string;
 }
-// bryt ut item till ett "Movie"-interface
 interface Props {
   category: string;
   keyword?: string;
