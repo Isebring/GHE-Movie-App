@@ -100,10 +100,10 @@ const HeroSlideItem = (props: any) => {
           <Overview>{item.overview}</Overview>
           <ButtonFlex>
             <Buttons onClick={() => navigate("/movie/" + item.id)}>
-              Watch now
+              To details
             </Buttons>
             <HoverButton>
-              <OutlineButton>More info</OutlineButton>
+              <OutlineButton>TBD</OutlineButton>
             </HoverButton>
           </ButtonFlex>
         </Center>
@@ -148,7 +148,7 @@ const HoverButton = styled.div`
 
 const Flex = styled.div`
   display: flex;
-  backdrop-filter: brightness(0.4);
+  background-color: rgba(0, 0, 0, 0.6);
   @media (max-width: 850px) {
     flex-direction: column;
   }

@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import { category, movieType, tvType } from '../api/tmdbApi';
 import OutlineButton from '../components/buttons/Button';
+import HeroSlide from '../components/hero-slide/HeroSlide';
 import MovieList from '../components/MovieList';
 
 function Home() {
   return (
     <div>
+      <HeroSlide />
       <h2>Trending Movies</h2>
       <MovieList category={category.movie} type={movieType.popular} />
       <Link to="/movie">
