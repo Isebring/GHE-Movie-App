@@ -21,7 +21,10 @@ function MovieCard(props: Props) {
   const link = "/" + category[props.category] + "/" + item.id;
 
   // Get background for MovieCard
-  const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
+  let bg;
+  if (item.poster_path || item.backdrop_path) {
+    bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
+  }
 
   return (
     <Link to={link}>
