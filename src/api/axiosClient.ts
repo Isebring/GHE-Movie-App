@@ -8,10 +8,9 @@ const axiosClient = axios.create({
     "Content-Type": "application/json",
   },
   params: {
-      api_key: apiConfig.apiKey,
+    api_key: apiConfig.apiKey,
   },
 } as AxiosRequestConfig);
-
 
 axiosClient.interceptors.request.use(async (config) => config);
 
