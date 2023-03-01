@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import styled from 'styled-components';
 import apiConfig from '../../api/apiConfig';
 import tmdbApi from '../../api/tmdbApi';
+import noImage from '../../assets/noimage.png';
 
 interface Props {
   id: number;
@@ -35,7 +36,9 @@ function CastList(props: Props) {
         <CastItem key={item.id}>
           <CastItemImage
             src={
-              item.profile_path ? apiConfig.w500Image(item.profile_path) : ''
+              item.profile_path
+                ? apiConfig.w500Image(item.profile_path)
+                : noImage
             }
             alt={`${item.name} profile`}
           />
