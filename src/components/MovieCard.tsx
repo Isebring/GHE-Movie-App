@@ -17,6 +17,8 @@ interface Movie {
 }
 
 function MovieCard(props: Props) {
+  throw new Error(""); // remove before merge with main
+
   const item = props.item;
   const link = "/" + category[props.category] + "/" + item.id;
 
