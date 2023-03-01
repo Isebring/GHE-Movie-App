@@ -14,8 +14,8 @@ interface Movie {
   name: string;
   poster_path: string;
   backdrop_path: string;
-  vote_average: number;
-  vote_count: number;
+  vote_average?: number;
+  vote_count?: number;
 }
 
 function MovieCard(props: Props) {
@@ -30,22 +30,22 @@ function MovieCard(props: Props) {
   }
 
   return (
-    <Link style={{textDecoration: "none"}} to={link}>
+    <Link style={{ textDecoration: "none" }} to={link}>
       <Card item={item} category={props.category} />
-        {/* <button>
+      {/* <button>
           <i>Play</i>
         </button> */}
       {/* Display title of Movie or TV Show */}
       <MediaTitle>
-      <h3>{item.title || item.name}</h3>
+        <h3>{item.title || item.name}</h3>
       </MediaTitle>
     </Link>
   );
 }
 
 const MediaTitle = styled.div`
-font-family: 'Inter', system-ui, Arial, sans-serif;
-color: white;
+  font-family: "Inter", system-ui, Arial, sans-serif;
+  color: white;
 `;
 
 const Card = styled.div<Props>`
@@ -69,13 +69,13 @@ const Card = styled.div<Props>`
     transition: opacity 0.3s ease-in-out;
     background-color: rgba(0, 0, 0, 0.6);
   }
-  
+
   &:hover::before {
     opacity: 1;
   }
 
   &::after {
-    content: "User rating: ${props => props.item.vote_average}";
+    content: "User rating: ${(props) => props.item.vote_average}";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -85,7 +85,7 @@ const Card = styled.div<Props>`
     color: white;
     opacity: 0;
     transition: opacity 0.4s;
-    font-family: 'Poppins', system-ui, Arial, sans-serif;
+    font-family: "Poppins", system-ui, Arial, sans-serif;
 
     @media (max-width: 1600px) {
       font-size: 3rem;
@@ -108,7 +108,9 @@ const Card = styled.div<Props>`
     opacity: 1;
   }
 
-  background-image: ${props => `url(${apiConfig.w500Image(props.item.poster_path || props.item.backdrop_path)})`};
-  
+  background-image: ${(props) =>
+    `url(${apiConfig.w500Image(
+      props.item.poster_path || props.item.backdrop_path
+    )})`};
 `;
 export default MovieCard;
