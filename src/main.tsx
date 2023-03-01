@@ -1,4 +1,3 @@
-
 import { MantineProvider } from "@mantine/core";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -12,9 +11,8 @@ import {
 import App from "./App";
 import "./main.css";
 import Catalog from "./pages/Catalog";
-import Details from "./pages/Details";
+import Details from "./pages/details/Details";
 import Home from "./pages/Home";
-
 
 const router = createBrowserRouter(
   createRoutesFromElements(
