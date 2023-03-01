@@ -8,43 +8,40 @@ const headerNav = [
     path: '/',
   },
   {
-  display: 'Movies',
-  path: '/movie',
-},
-{
-display: 'TV Series',
-path: '/tv',
-}
+    display: 'Movies',
+    path: '/movie',
+  },
+  {
+    display: 'TV Series',
+    path: '/tv',
+  },
 ];
 
 interface NavItemProps {
   active: boolean;
 }
 
-
-function Header()  {
-  const {pathname} = useLocation();
+function Header() {
+  const { pathname } = useLocation();
   const headerRef = useRef(null);
-  const active = headerNav.findIndex(e => e.path === pathname);
+  const active = headerNav.findIndex((e) => e.path === pathname);
 
   return (
-    <div ref={headerRef}>
+    <HeaderStyle ref={headerRef}>
       <Nav>
-        {
-          headerNav.map((e, i) => (
-            <NavItem key={i} active={i === active}>
-              <Link to={e.path}>
-                {e.display}
-                </Link>
-            </NavItem> 
-          )
-          )
-        }
+        {headerNav.map((e, i) => (
+          <NavItem key={i} active={i === active}>
+            <Link to={e.path}>{e.display}</Link>
+          </NavItem>
+        ))}
       </Nav>
-      </div>
-  )
+    </HeaderStyle>
+  );
 }
 
+const HeaderStyle = styled.header`
+  z-index: 1;
+`;
 
 const Nav = styled.ul`
   display: flex;
@@ -72,7 +69,5 @@ const NavItem = styled.li<NavItemProps>`
 
   }
 `;
-
-
 
 export default Header;
