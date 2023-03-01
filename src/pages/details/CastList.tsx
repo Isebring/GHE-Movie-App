@@ -48,7 +48,6 @@ function CastList(props: Props) {
 const CastFlex = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 `;
 
 const CastItem = styled.div`

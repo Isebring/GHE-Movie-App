@@ -39,9 +39,7 @@ function Header() {
   );
 }
 
-const HeaderStyle = styled.header`
-  z-index: 1;
-`;
+const HeaderStyle = styled.header``;
 
 const Nav = styled.ul`
   display: flex;
