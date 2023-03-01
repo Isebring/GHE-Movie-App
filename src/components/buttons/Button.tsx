@@ -1,27 +1,23 @@
-import PropTypes from 'prop-types';
+import { Button } from '@mantine/core';
+import { MouseEventHandler } from 'react';
 
-type ButtonProps = React.PropsWithChildren<{ onClick?: () => void }>;
+type ButtonProps = React.PropsWithChildren<{ onClick?: MouseEventHandler<HTMLButtonElement> }>;
 
-
-function Button(props: ButtonProps) {
+function FilledButton(props: ButtonProps) {
   return (
-    <button onClick={props.onClick?.() ?? (() => {})}>
+    <Button variant="gradient" gradient={{ from: 'orange', to: 'red' }} size="lg" onClick={props.onClick ?? undefined}>
       {props.children}
-    </button>
+    </Button>
   )
 }
 
-const OutlineButton = (props: ButtonProps) => {
+ export const OutlineButton = (props: ButtonProps) => {
   return (
-    <button onClick={props.onClick?.() ?? (() => {})}>
+    <Button variant="outline" style={{color: "white", borderColor: "white", marginLeft: "1rem"}} size="lg" onClick={props.onClick ?? undefined}>
     {props.children}
-    </button>
+    </Button>
 )
   
 }
 
-Button.propTypes = {
-  onClick: PropTypes.func
-}
-
-export default Button;
+export default FilledButton;
