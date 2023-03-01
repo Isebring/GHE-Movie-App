@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import styled from "styled-components";
 import tmdbApi, { category, movieType, tvType } from "../api/tmdbApi";
-import Input from "./Input";
+import useInfiniteScroll from "../hooks/useInfiniteMovies";
 import MovieCard from "./MovieCard";
+import MovieSearch from "./MovieSearch";
 
 interface Props {
   category: string;
@@ -49,31 +50,9 @@ function MovieGrid(props: Props) {
     getList();
   }, [props.category, keyword]);
 
-  // TODO: separate into its own component || useInfiniteMovies hook
-  useEffect(() => {
-    function handleIntersection(entries: IntersectionObserverEntry[]) {
-      const target = entries[0];
-      if (target.isIntersecting) {
-        loadMore();
-      }
-    }
-
-    const observer = new IntersectionObserver(handleIntersection, {
-      root: null,
-      threshold: 0.1,
-    });
-
-    const sentinel = document.getElementById("sentinel");
-    if (sentinel) {
-      observer.observe(sentinel);
-    }
-
-    return () => {
-      if (sentinel) {
-        observer.unobserve(sentinel);
-      }
-    };
-  }, [loadMore]);
+  useInfiniteScroll({
+    onLoadMore: loadMore,
+  });
 
   async function loadMore() {
     let response = null;
@@ -118,40 +97,5 @@ const Grid = styled.div`
   gap: 1.25rem;
   margin-bottom: 3rem;
 `;
-function MovieSearch(props: Props) {
-  const navigate = useNavigate();
-
-  const [keyword, setKeyword] = useState("");
-
-  const handleSubmit = useCallback(
-    (event: React.FormEvent) => {
-      event.preventDefault();
-      if (keyword.trim().length > 0) {
-        navigate(`/${props.category}/search/${keyword}`);
-        setKeyword("");
-      }
-    },
-    [keyword, props.category, navigate]
-  );
-
-  const handleInputChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setKeyword(event.target.value);
-    },
-    []
-  );
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <Input
-        type="text"
-        placeholder="Enter keyword"
-        value={keyword}
-        onChange={handleInputChange}
-      />
-      <button type="submit">Search</button>
-    </form>
-  );
-}
 
 export default MovieGrid;
