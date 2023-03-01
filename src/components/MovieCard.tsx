@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import apiConfig from "../api/apiConfig";
-import { category } from "../api/tmdbApi";
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import apiConfig from '../api/apiConfig';
+import { category } from '../api/tmdbApi';
 
 interface Props {
   item: Movie;
@@ -18,12 +18,14 @@ interface Movie {
 
 function MovieCard(props: Props) {
   const item = props.item;
-  const link = "/" + category[props.category] + "/" + item.id;
+  const link = '/' + category[props.category] + '/' + item.id;
 
   // Get background for MovieCard
-  let bg;
+  let bg = '';
   if (item.poster_path || item.backdrop_path) {
     bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
+  } else {
+    bg = '../../assets/noimage.png';
   }
 
   return (
