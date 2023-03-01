@@ -1,16 +1,23 @@
-import { Outlet } from 'react-router-dom';
-import 'swiper/swiper.min.css';
-import Footer from './components/Footer';
-import Header from './components/Header';
+import { Outlet } from "react-router-dom";
+import "swiper/swiper.min.css";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import ErrorBoundary from "./ErrorBoundary";
 
 function App() {
   return (
     <>
-      <Header />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
+      <ErrorBoundary>
+        <Header />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <main>
+          <Outlet />
+        </main>
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Footer />
+      </ErrorBoundary>
     </>
   );
 }

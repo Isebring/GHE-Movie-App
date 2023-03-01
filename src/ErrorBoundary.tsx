@@ -1,4 +1,5 @@
 import { Component, ReactNode } from "react";
+import styled from "styled-components";
 
 interface Props {
   children: ReactNode;
@@ -20,11 +21,17 @@ class ErrorBoundary extends Component<Props, State> {
 
   render() {
     if (this.state.hasError) {
-      return <h1>Something went wrong...</h1>;
+      return <Styledh1>Something went wrong...</Styledh1>;
     }
 
     return this.props.children;
   }
 }
+
+const Styledh1 = styled.h1`
+  text-align: center;
+  font-size: 1.5rem;
+  color: white;
+`;
 
 export default ErrorBoundary;
