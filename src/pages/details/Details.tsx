@@ -12,6 +12,9 @@ interface MovieDetails {
   genres: { name: string }[];
   poster_path: string | null;
   backdrop_path: string | null;
+  release_date: string;
+  vote_average: number;
+  vote_count: number;
   overview: string;
 }
 
@@ -36,55 +39,54 @@ function Details() {
     <>
       {item && (
         <>
-          <Banner
+          <Backdrop
             style={{
               backgroundImage: `url(${apiConfig.originalImage(
                 item.backdrop_path || item.poster_path || ''
               )})`,
             }}
-          ></Banner>
-
-          <MovieContent>
-            <PosterContainer>
+          >
+            <MovieContent>
               <Poster
-                style={{
-                  backgroundImage: `url(${apiConfig.originalImage(
-                    item.poster_path || item.backdrop_path || ''
-                  )})`,
-                }}
-              ></Poster>
-            </PosterContainer>
+                src={apiConfig.originalImage(
+                  item.poster_path || item.backdrop_path || ''
+                )}
+                alt={`${item.title || item.name} poster`}
+              />
 
-            <Info>
-              <div className="title">
-                <h2>{item.title || item.name}</h2>
-              </div>
-              <Genres>
-                {item.genres &&
-                  item.genres
-                    .slice(0, 5)
-                    .map((genre, i) => (
-                      <GenreItem key={i}>{genre.name}</GenreItem>
-                    ))}
-              </Genres>
-              <p className="overview">{item.overview}</p>
-              <Cast>
-                <div>
-                  <h2>Casts</h2>
+              <Info>
+                <div className="title">
+                  <h2>{item.title || item.name}</h2>
+                  <h3>{item.release_date}</h3>
+                  <h3>{item.vote_average.toFixed(1) + ' average score'}</h3>
+                  <h3>{item.vote_count + ' voters'}</h3>
                 </div>
-                <CastList id={item.id} />
-              </Cast>
-            </Info>
-          </MovieContent>
+                <Genres>
+                  {item.genres &&
+                    item.genres
+                      .slice(0, 5)
+                      .map((genre, i) => (
+                        <GenreItem key={i}>{genre.name}</GenreItem>
+                      ))}
+                </Genres>
+                <p className="overview">{item.overview}</p>
+                <Cast>
+                  <div>
+                    <h2>Casts</h2>
+                  </div>
+                  <CastList id={item.id} />
+                </Cast>
+              </Info>
+            </MovieContent>
+          </Backdrop>
         </>
       )}
     </>
   );
 }
 
-const Banner = styled.div`
+const Backdrop = styled.div`
   height: 100vh;
-  position: relative;
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
@@ -93,15 +95,14 @@ const Banner = styled.div`
   &:before {
     content: '';
     position: absolute;
-    top: 0;
+    top: 2rem;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 0;
+    opacity: 0.5;
   }
-
-  text-align: center;
 `;
 
 const MovieContent = styled.div`
@@ -110,53 +111,49 @@ const MovieContent = styled.div`
   flex-wrap: row;
   justify-content: center;
   align-items: flex-start;
-  max-width: 90%
-  margin: 0 auto;
-  padding: 0 1rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   z-index: 1;
+
+  @media only screen and (max-width: 920px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
-const PosterContainer = styled.div`
-  width: 40%;
-  height: auto;
-  margin: 1rem;
-`;
-
-const Poster = styled.div`
-  background-position: center center;
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+const Poster = styled.img`
+  width: 30%;
   border-radius: 30px;
-  padding-top: 150%;
+  margin-top: 1rem;
+  z-index: 1;
+
+  @media only screen and (max-width: 920px) {
+    width: 50%;
+  }
 `;
 
 const Info = styled.div`
-  width: 60%;
-  max-width: 800px;
+  width: 90%;
   padding-left: 2rem;
   position: relative;
 `;
 
 const Genres = styled.div`
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  margin-left: 0.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 `;
 
 const GenreItem = styled.span`
   padding: 0.4rem;
   border: 2px solid white;
   border-radius: 30px;
+  margin-right: 1rem;
   background: rgba(0, 0, 0, 0.5);
+  display: inline-block;
+  width: auto;
+  margin-bottom: 0.5rem;
 `;
 
 const Cast = styled.div`
-  margin-top: 2rem;
+  margin-top: 1rem;
 `;
 
 export default Details;

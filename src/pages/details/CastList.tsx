@@ -34,11 +34,10 @@ function CastList(props: Props) {
       {casts.map((item) => (
         <CastItem key={item.id}>
           <CastItemImage
-            style={{
-              backgroundImage: item.profile_path
-                ? `url(${apiConfig.w500Image(item.profile_path)})`
-                : '',
-            }}
+            src={
+              item.profile_path ? apiConfig.w500Image(item.profile_path) : ''
+            }
+            alt={`${item.name} profile`}
           />
           <CastItemName>{item.name}</CastItemName>
         </CastItem>
@@ -48,31 +47,28 @@ function CastList(props: Props) {
 }
 const CastFlex = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const CastItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 300px;
-  width: 300px;
-  margin-right: 0.3rem;
+  width: 20%;
+  padding: 8px;
 `;
 
-const CastItemImage = styled.div`
+const CastItemImage = styled.img`
   width: 100%;
-  height: 75%;
+  height: auto;
   margin-bottom: 8px;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
   object-fit: cover;
+  border-radius: 30px;
 `;
 
 const CastItemName = styled.p`
-  margin: 0;
-  font-size: 14px;
+  font-size: 0.8rem;
   max-width: 100%;
   text-align: center;
 `;
