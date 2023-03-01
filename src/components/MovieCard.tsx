@@ -1,28 +1,34 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import apiConfig from '../api/apiConfig';
-import { category } from '../api/tmdbApi';
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import apiConfig from "../api/apiConfig";
+import { category } from "../api/tmdbApi";
 
 interface Props {
-  item: {
-    id: number;
-    title: string;
-    name: string;
-    poster_path: string;
-    backdrop_path: string;
-    vote_average: number;
-    vote_count: number;
-  };
+  item: Movie;
   category: string;
+}
+
+interface Movie {
+  id: number;
+  title: string;
+  name: string;
+  poster_path: string;
+  backdrop_path: string;
+  vote_average: number;
+  vote_count: number;
 }
 
 function MovieCard(props: Props) {
   const item = props.item;
-  const link = '/' + category[props.category] + '/' + item.id;
+  const link = "/" + category[props.category] + "/" + item.id;
 
   // Get background for MovieCard
-  const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
-  
+
+  let bg;
+  if (item.poster_path || item.backdrop_path) {
+    bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
+  }
+
   return (
     <Link style={{textDecoration: "none"}} to={link}>
       <Card item={item} category={props.category} />

@@ -27,7 +27,7 @@ function Header() {
   const active = headerNav.findIndex((e) => e.path === pathname);
 
   return (
-    <div ref={headerRef}>
+    <HeaderStyle ref={headerRef}>
       <Nav>
         {headerNav.map((e, i) => (
           <NavItem key={i} active={i === active}>
@@ -35,9 +35,11 @@ function Header() {
           </NavItem>
         ))}
       </Nav>
-    </div>
+    </HeaderStyle>
   );
 }
+
+const HeaderStyle = styled.header``;
 
 const Nav = styled.ul`
   display: flex;
@@ -62,4 +64,5 @@ const NavItem = styled.li<NavItemProps>`
     color: orange;
   }
 `;
+
 export default Header;

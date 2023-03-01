@@ -1,6 +1,8 @@
+
 import { MantineProvider } from "@mantine/core";
 import React from "react";
 import ReactDOM from "react-dom/client";
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -12,6 +14,7 @@ import "./main.css";
 import Catalog from "./pages/Catalog";
 import Details from "./pages/Details";
 import Home from "./pages/Home";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
