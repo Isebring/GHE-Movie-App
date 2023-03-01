@@ -36,6 +36,7 @@ function HeroSlide() {
   }, []);
 
   return (
+    <SwiperWrapper>
     <Swiper
       modules={[Autoplay]}
       grabCursor={true}
@@ -57,6 +58,7 @@ function HeroSlide() {
         </SwiperSlide>
       ))}
     </Swiper>
+    </SwiperWrapper>
   );
   {
     /* {
@@ -103,7 +105,7 @@ const HeroSlideItem = (props: any) => {
               To details
             </Buttons>
             <HoverButton>
-              <OutlineButton>TBD</OutlineButton>
+              <OutlineButton>More movies</OutlineButton>
             </HoverButton>
           </ButtonFlex>
         </Center>
@@ -139,6 +141,10 @@ const HeroSlideItem = (props: any) => {
 //   </Modal>
 //   )
 // };
+
+const SwiperWrapper = styled.div`
+height: 100%;
+`;
 
 const HoverButton = styled.div`
   & :hover {
@@ -192,6 +198,26 @@ const H2Title = styled.h2`
   font-family: "Poppins", system-ui, Arial, sans-serif;
   padding: 0.2rem;
   text-align: center;
+  @media (max-width: 850px) {
+    font-size: 3rem;
+  }
+
+  @media (max-width: 840px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 570px) {
+    font-size: 1.7rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 430px) {
+    font-size: 1.2rem;
+  }
+
 `;
 
 const SwiperItem = styled.div`
