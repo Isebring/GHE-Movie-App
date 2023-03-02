@@ -47,16 +47,31 @@ function MovieSearch(props: Props) {
 
 const StyledForm = styled.form`
   display: flex;
+  flex-wrap: wrap;
   padding: 1rem 0.5rem;
   gap: 0.8rem;
   text-align: center;
 
   input {
     color: #fff;
+    height: 3.15rem;
     background: rgba(0, 0, 0, 0.5);
-    border: none;
+    border: rgba(160, 156, 156, 0.5);
     border-radius: 0.3rem;
     padding: 0 0.7rem;
+    max-width: 12rem;
+  }
+
+  @media screen and (max-width: 380px) {
+    flex-direction: column;
+
+    input {
+      max-width: 100%;
+      align-items: center;
+      justify-items: center;
+      place-items: center;
+      text-align: center;
+    }
   }
 `;
 
