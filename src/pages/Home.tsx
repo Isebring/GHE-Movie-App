@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { category, movieType, tvType } from '../api/tmdbApi';
-import OutlineButton from '../components/buttons/Button';
-import HeroSlide from '../components/hero-slide/HeroSlide';
-import MovieList from '../components/MovieList';
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { category, movieType, tvType } from "../api/tmdbApi";
+import OutlineButton from "../components/buttons/Button";
+import HeroSlide from "../components/HeroSlide";
+import MovieList from "../components/MovieList";
 
 function Home() {
   return (
@@ -45,7 +45,7 @@ const SpaceBetween = styled.div`
   justify-content: space-between;
   padding: 1rem;
   color: white;
-  font-family: 'Poppins', system-ui, Arial, sans-serif;
+  font-family: "Poppins", system-ui, Arial, sans-serif;
   align-items: center;
   @media (max-width: 850px) {
     flex-direction: column;
