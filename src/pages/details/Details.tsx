@@ -103,7 +103,7 @@ const Backdrop = styled.div<{ backgroundImage: string }>`
   &:before {
     content: "";
     position: absolute;
-    top: 3.25rem;
+    top: 3rem;
     left: 0;
     width: 100%;
     height: 100%;
