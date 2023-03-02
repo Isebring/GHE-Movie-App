@@ -11,8 +11,8 @@ interface MovieDetails {
   title: string;
   name: string;
   genres: { name: string }[];
-  poster_path: string | null;
-  backdrop_path: string | null;
+  poster_path: string;
+  backdrop_path: string;
   release_date: string;
   vote_average: number;
   vote_count: number;
@@ -41,11 +41,13 @@ function Details() {
       {item && (
         <>
           <Backdrop
-            style={{
-              backgroundImage: `url(${apiConfig.originalImage(
-                item.backdrop_path || item.poster_path || ""
-              )})`,
-            }}
+            backgroundImage={
+              item.backdrop_path || item.poster_path
+                ? apiConfig.originalImage(
+                    item.backdrop_path || item.poster_path
+                  )
+                : ""
+            }
           >
             <MovieContent>
               <Poster
@@ -89,12 +91,14 @@ function Details() {
   );
 }
 
-const Backdrop = styled.div`
+const Backdrop = styled.div<{ backgroundImage: string }>`
   height: 100vh;
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
+  ${({ backgroundImage }) =>
+    backgroundImage && `background-image: url(${backgroundImage})`};
 
   &:before {
     content: "";
