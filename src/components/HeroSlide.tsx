@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import apiConfig from "../api/apiConfig";
 import axiosClient from "../api/axiosClient";
 import tmdbApi, { movieType } from "../api/tmdbApi";
-import Buttons, { OutlineButton } from "./buttons/Button";
+import Buttons, { OutlineButton } from "./Button";
 
 interface MoviesResponse {
   results: { backdrop_path: string }[];

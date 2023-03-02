@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { category, movieType, tvType } from "../api/tmdbApi";
-import OutlineButton from "../components/buttons/Button";
+import OutlineButton from "../components/Button";
 import HeroSlide from "../components/HeroSlide";
 import MovieList from "../components/MovieList";
 
