@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
-import FilledButton from "./buttons/Button";
+import FilledButton from "./Button";
 import Input from "./Input";
 
 interface Props {

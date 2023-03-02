@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import apiConfig from "../../api/apiConfig";
-import axiosClient from "../../api/axiosClient";
-import tmdbApi, { movieType } from "../../api/tmdbApi";
-import Buttons, { OutlineButton } from "../buttons/Button";
+import apiConfig from "../api/apiConfig";
+import tmdbApi, { movieType } from "../api/tmdbApi";
+import Buttons, { OutlineButton } from "./Button";
 
 interface MoviesResponse {
   results: { backdrop_path: string }[];
@@ -20,50 +19,41 @@ function HeroSlide() {
     const getMovies = async () => {
       const params = { page: 1 };
       try {
-        console.log("axiosClient:", axiosClient);
-        console.log("params:", params);
         const response: MoviesResponse = await tmdbApi.getMoviesList(
           movieType.popular,
           { params }
         );
         setMovieItems(response.results.slice(0, 4));
-        console.log("response:", response);
-      } catch (error) {
-        console.log("Error:", error);
-      }
+      } catch (error) {}
     };
     getMovies();
   }, []);
 
   return (
     <SwiperWrapper>
-    <Swiper
-      modules={[Autoplay]}
-      grabCursor={true}
-      spaceBetween={0}
-      slidesPerView={1}
-      autoplay={{ delay: 3500 }}
-    >
-      {movieItems.map((item, i) => (
-        <SwiperSlide key={i}>
-          {({ isActive }) => (
-            <SwiperItem>
-              <HeroSlideItem
-                item={item}
-                className={`${isActive ? "active" : ""}`}
-              />
-              {/* // <img src={apiConfig.originalImage(item.backdrop_path)} /> */}
-            </SwiperItem>
-          )}
-        </SwiperSlide>
-      ))}
-    </Swiper>
+      <Swiper
+        modules={[Autoplay]}
+        grabCursor={true}
+        spaceBetween={0}
+        slidesPerView={1}
+        autoplay={{ delay: 3500 }}
+      >
+        {movieItems.map((item, i) => (
+          <SwiperSlide key={i}>
+            {({ isActive }) => (
+              <SwiperItem>
+                <HeroSlideItem
+                  item={item}
+                  className={`${isActive ? "active" : ""}`}
+                />
+              </SwiperItem>
+            )}
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </SwiperWrapper>
   );
   {
-    /* {
-      movieItems.map((item, i) => <TrailerModal key={i} item={item} />)
-    } */
   }
 }
 
@@ -74,25 +64,6 @@ const HeroSlideItem = (props: any) => {
   const background = apiConfig.originalImage(
     item.backdrop_path ? item.backdrop_path : item.poster_path
   );
-
-  // const setModalActive = async () => {
-  //   const modal = document.querySelector(`#modal_${item.id}`);
-
-  //   if (modal) {
-  //     const videos = await tmdbApi.getVideos(category.movie, item.id);
-
-  //     if (videos.results.length > 0) {
-  //       const videoSrc = "https://www.youtube.com/embed/" + videos.results[0].key;
-  //       const iframe = modal.querySelector(".modal__content > iframe");
-  //       if (iframe) {
-  //         iframe.setAttribute("src", videoSrc);
-  //       }
-  //     } else {
-  //       modal.querySelector('.modal__content')!.innerHTML = "No Trailer";
-  //     }
-  //     modal.classList.toggle('active');
-  //   }
-  // }
 
   return (
     <div style={{ backgroundImage: `url(${background})` }}>
@@ -105,7 +76,9 @@ const HeroSlideItem = (props: any) => {
               To details
             </Buttons>
             <HoverButton>
-              <OutlineButton>More movies</OutlineButton>
+              <OutlineButton onClick={() => navigate("/movie/")}>
+                More movies
+              </OutlineButton>
             </HoverButton>
           </ButtonFlex>
         </Center>
@@ -115,35 +88,8 @@ const HeroSlideItem = (props: any) => {
   );
 };
 
-// interface ModalProps {
-//   active: boolean;
-//   id: string;
-//   children: React.ReactNode;
-//   onClose?: () => void;
-// }
-
-// const TrailerModal: React.FC<{item: any}> = (props) => {
-//   const item = props.item;
-
-//   const iframeRef = useRef<HTMLIFrameElement | null>(null);
-
-//   const onClose = () => {
-//     if (iframeRef.current) {
-//       iframeRef.current.setAttribute("src", "");
-//     }
-//   };
-
-//   return (
-//   <Modal active={false} id={`modal_${item.id}`}>
-//       <ModalContent onClose={onClose} id={`modal_${item.id}`} active={false}>
-//     <iframe ref={iframeRef} width="50%" height="500px" title="trailer"></iframe>
-//     </ModalContent>
-//   </Modal>
-//   )
-// };
-
 const SwiperWrapper = styled.div`
-height: 100%;
+  height: 100%;
 `;
 
 const HoverButton = styled.div`
@@ -217,7 +163,6 @@ const H2Title = styled.h2`
   @media (max-width: 430px) {
     font-size: 1.2rem;
   }
-
 `;
 
 const SwiperItem = styled.div`
