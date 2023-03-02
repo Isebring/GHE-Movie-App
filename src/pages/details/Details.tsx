@@ -37,7 +37,7 @@ function Details() {
     getDetail();
   }, [category, id]);
 
-  if (!item) return <p>Filmen finns inte....</p>;
+  if (!item) return <p>Movie does not exist....</p>;
 
   return (
     <Backdrop
@@ -71,7 +71,9 @@ function Details() {
                 .slice(0, 5)
                 .map((genre, i) => <GenreItem key={i}>{genre.name}</GenreItem>)}
           </Genres>
-          <p className="overview">{item.overview}</p>
+          <p className="overview" style={{ fontWeight: "600" }}>
+            {item.overview}
+          </p>
           <Cast>
             <div>
               <h2>Casts</h2>
@@ -99,7 +101,7 @@ const Backdrop = styled.div<{ backgroundImage: string }>`
     top: 3rem;
     left: 0;
     width: 100%;
-    height: 150%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 0;
     opacity: 0.5;

@@ -57,7 +57,7 @@ const LogoStyle = styled.div`
   width: 8rem;
   height: 3rem;
   display: flex;
-  padding: 0.18rem;
+  padding: 0.3rem;
 
   @media (max-width: 500px) {
     display: none;
@@ -73,7 +73,10 @@ const Nav = styled.div`
   list-style: none;
   justify-content: space-between;
   font-size: 1.7rem;
-  background: #000000;
+
+  @media (max-width: 501px) {
+    justify-content: center;
+  }
 
   @media (max-width: 370px) {
     font-size: 1.4rem;
@@ -88,11 +91,11 @@ const NavItem = styled.li<NavItemProps>`
 
   & a {
     text-decoration: none;
-    color: ${({ active }) => (active ? "orange" : "white")};
+    color: ${({ active }) => (active ? "#5c77c9" : "white")};
   }
 
   & a:hover {
-    color: orange;
+    color: #5c77c9;
   }
 `;
 export default Header;
