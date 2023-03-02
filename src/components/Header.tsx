@@ -73,7 +73,10 @@ const Nav = styled.div`
   list-style: none;
   justify-content: space-between;
   font-size: 1.7rem;
-  background: #000000;
+
+  @media (max-width: 501px) {
+    justify-content: center;
+  }
 
   @media (max-width: 370px) {
     font-size: 1.4rem;
