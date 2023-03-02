@@ -47,7 +47,7 @@ function Header() {
   );
 }
 
-const HeaderStyle = styled.div``;
+const HeaderStyle = styled.header``;
 
 const JustifyRight = styled.div`
   display: flex;
