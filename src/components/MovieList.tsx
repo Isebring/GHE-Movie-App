@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import tmdbApi, { category } from "../api/tmdbApi";
+import { Movie } from "../types";
 import MovieCard from "./MovieCard";
 
 interface Props {
@@ -10,19 +11,8 @@ interface Props {
   id?: number;
 }
 
-interface Movie {
-  id: number;
-  title: string;
-  name: string;
-  poster_path: string;
-  backdrop_path: string;
-  vote_average: number;
-  vote_count: number;
-}
-
 function MovieList(props: Props) {
   const [items, setItems] = useState([]);
-
 
   useEffect(() => {
     const getList = async () => {
@@ -47,9 +37,7 @@ function MovieList(props: Props) {
 
   return (
     <MovieListWrapper>
-
       <Swiper grabCursor={true} spaceBetween={10} slidesPerView={"auto"}>
-
         {items.map((item: Movie, i: number) => (
           <SwiperSlide key={i}>
             <MovieCard item={item} category={props.category} />
@@ -65,9 +53,9 @@ const MovieListWrapper = styled.div`
     width: 15%;
   }
   .swiper-slide {
-  @media (max-width: 1024px) {
-    width: 30%;
-  }
+    @media (max-width: 1024px) {
+      width: 30%;
+    }
     @media (max-width: 850px) {
       width: 40%;
     }
@@ -79,8 +67,7 @@ const MovieListWrapper = styled.div`
     @media (max-width: 400px) {
       width: 60%;
     }
+  }
 `;
-
-
 
 export default MovieList;

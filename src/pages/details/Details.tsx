@@ -36,58 +36,51 @@ function Details() {
     };
     getDetail();
   }, [category, id]);
-  return (
-    <>
-      {item && (
-        <>
-          <Backdrop
-            backgroundImage={
-              item.backdrop_path || item.poster_path
-                ? apiConfig.originalImage(
-                    item.backdrop_path || item.poster_path
-                  )
-                : ""
-            }
-          >
-            <MovieContent>
-              <Poster
-                src={apiConfig.originalImage(
-                  item.poster_path || item.backdrop_path || ""
-                )}
-                alt={`${item.title || item.name} poster`}
-                onError={(e) => {
-                  e.currentTarget.src = noImage;
-                }}
-              />
 
-              <Info>
-                <div className="title">
-                  <h2>{item.title || item.name}</h2>
-                  <h3>{item.release_date}</h3>
-                  <h3>{"User rating: " + item.vote_average.toFixed(1)}</h3>
-                  <h3>{item.vote_count + " votes"}</h3>
-                </div>
-                <Genres>
-                  {item.genres &&
-                    item.genres
-                      .slice(0, 5)
-                      .map((genre, i) => (
-                        <GenreItem key={i}>{genre.name}</GenreItem>
-                      ))}
-                </Genres>
-                <p className="overview">{item.overview}</p>
-                <Cast>
-                  <div>
-                    <h2>Casts</h2>
-                  </div>
-                  <CastList id={item.id} />
-                </Cast>
-              </Info>
-            </MovieContent>
-          </Backdrop>
-        </>
-      )}
-    </>
+  if (!item) return <p>Filmen finns inte....</p>;
+
+  return (
+    <Backdrop
+      backgroundImage={
+        item.backdrop_path || item.poster_path
+          ? apiConfig.originalImage(item.backdrop_path || item.poster_path)
+          : ""
+      }
+    >
+      <MovieContent>
+        <Poster
+          src={apiConfig.originalImage(
+            item.poster_path || item.backdrop_path || ""
+          )}
+          alt={`${item.title || item.name} poster`}
+          onError={(e) => {
+            e.currentTarget.src = noImage;
+          }}
+        />
+
+        <Info>
+          <div className="title">
+            <h2>{item.title || item.name}</h2>
+            <h3>{item.release_date}</h3>
+            <h3>{"User rating: " + item.vote_average.toFixed(1)}</h3>
+            <h3>{item.vote_count + " votes"}</h3>
+          </div>
+          <Genres>
+            {item.genres &&
+              item.genres
+                .slice(0, 5)
+                .map((genre, i) => <GenreItem key={i}>{genre.name}</GenreItem>)}
+          </Genres>
+          <p className="overview">{item.overview}</p>
+          <Cast>
+            <div>
+              <h2>Casts</h2>
+            </div>
+            <CastList id={item.id} />
+          </Cast>
+        </Info>
+      </MovieContent>
+    </Backdrop>
   );
 }
 

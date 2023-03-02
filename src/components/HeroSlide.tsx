@@ -5,15 +5,16 @@ import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import apiConfig from "../api/apiConfig";
 import tmdbApi, { movieType } from "../api/tmdbApi";
+import { Movie } from "../types";
 import Buttons, { OutlineButton } from "./Button";
 
 interface MoviesResponse {
-  results: { backdrop_path: string }[];
+  results: Movie[];
 }
 
 function HeroSlide() {
   SwiperCore.use([Autoplay]);
-  const [movieItems, setMovieItems] = useState<{ backdrop_path: string }[]>([]);
+  const [movieItems, setMovieItems] = useState<Movie[]>([]);
 
   useEffect(() => {
     const getMovies = async () => {
@@ -53,11 +54,14 @@ function HeroSlide() {
       </Swiper>
     </SwiperWrapper>
   );
-  {
-  }
 }
 
-const HeroSlideItem = (props: any) => {
+interface Props {
+  item: Movie;
+  className: string;
+}
+
+const HeroSlideItem = (props: Props) => {
   const navigate = useNavigate();
   const item = props.item;
 

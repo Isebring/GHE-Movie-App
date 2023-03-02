@@ -3,20 +3,11 @@ import styled from "styled-components";
 import apiConfig from "../api/apiConfig";
 import { category } from "../api/tmdbApi";
 import noImage from "../assets/imgs/noimage.png";
+import { Movie } from "../types";
 
 interface Props {
   item: Movie;
   category: string;
-}
-
-interface Movie {
-  id: number;
-  title: string;
-  name: string;
-  poster_path: string;
-  backdrop_path: string;
-  vote_average?: number;
-  vote_count?: number;
 }
 
 function MovieCard(props: Props) {
