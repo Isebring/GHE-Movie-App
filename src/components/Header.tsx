@@ -28,11 +28,13 @@ function Header() {
   const active = headerNav.findIndex((e) => e.path === pathname);
 
   return (
-    <div ref={headerRef}>
+    <HeaderStyle ref={headerRef}>
       <Nav>
-        <LogoStyle>
-          <img src={logoImage} alt="GHEDb logotype" />
-        </LogoStyle>
+        <Link to="/.">
+          <LogoStyle>
+            <img src={logoImage} alt="GHEDb logotype" />
+          </LogoStyle>
+        </Link>
         <JustifyRight>
           {headerNav.map((e, i) => (
             <NavItem key={i} active={i === active}>
@@ -41,9 +43,11 @@ function Header() {
           ))}
         </JustifyRight>
       </Nav>
-    </div>
+    </HeaderStyle>
   );
 }
+
+const HeaderStyle = styled.div``;
 
 const JustifyRight = styled.div`
   display: flex;
@@ -51,11 +55,16 @@ const JustifyRight = styled.div`
 
 const LogoStyle = styled.div`
   width: 8rem;
+  height: 3rem;
   display: flex;
   padding: 0.18rem;
 
   @media (max-width: 500px) {
     display: none;
+  }
+
+  & :hover {
+    filter: brightness(0.9);
   }
 `;
 
