@@ -16,10 +16,13 @@ interface Movie {
   name: string;
   poster_path: string;
   backdrop_path: string;
+  vote_average: number;
+  vote_count: number;
 }
 
 function MovieList(props: Props) {
   const [items, setItems] = useState([]);
+
 
   useEffect(() => {
     const getList = async () => {
@@ -44,7 +47,9 @@ function MovieList(props: Props) {
 
   return (
     <MovieListWrapper>
+
       <Swiper grabCursor={true} spaceBetween={10} slidesPerView={"auto"}>
+
         {items.map((item: Movie, i: number) => (
           <SwiperSlide key={i}>
             <MovieCard item={item} category={props.category} />
@@ -59,6 +64,23 @@ const MovieListWrapper = styled.div`
   .swiper-slide {
     width: 15%;
   }
+  .swiper-slide {
+  @media (max-width: 1024px) {
+    width: 30%;
+  }
+    @media (max-width: 850px) {
+      width: 40%;
+    }
+
+    @media (max-width: 500px) {
+      width: 50%;
+    }
+
+    @media (max-width: 400px) {
+      width: 60%;
+    }
 `;
+
+
 
 export default MovieList;

@@ -1,11 +1,11 @@
-import axios, { AxiosRequestConfig } from 'axios';
-import apiConfig from './apiConfig';
+import axios, { AxiosRequestConfig } from "axios";
+import apiConfig from "./apiConfig";
 
 const axiosClient = axios.create({
   baseURL: apiConfig.baseUrl,
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
+    Accept: "application/json",
+    "Content-Type": "application/json",
   },
   params: {
     api_key: apiConfig.apiKey,

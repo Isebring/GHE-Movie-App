@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+body {
+  background-image: linear-gradient(
+    to right bottom,
+    #100f0f,
+    #121011,
+    #141113,
+    #161315,
+    #171417,
+    #1f1a21,
+    #26202b,
+    #2b2637,
+    #383350,
+    #42426b,
+    #4a5287,
+    #4d63a5
+  );
+}
+
+img {
+  max-width: 100%;
+}
+
+/* .container {
+  max-width: 103.75rem;
+  margin: auto;
+} */

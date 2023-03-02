@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ErrorBoundary from "./ErrorBoundary";
 
+
 function App() {
   return (
     <>
