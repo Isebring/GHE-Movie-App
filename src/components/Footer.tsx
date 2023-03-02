@@ -19,7 +19,7 @@ function Footer() {
   );
 }
 
-const FlexFooter = styled.div`
+const FlexFooter = styled.footer`
   display: flex;
   justify-content: space-around;
   align-items: center;

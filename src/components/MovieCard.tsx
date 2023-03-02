@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import apiConfig from "../api/apiConfig";
 import { category } from "../api/tmdbApi";
-import noImage from "../assets/noimage.png";
+import noImage from "../assets/imgs/noimage.png";
 
 interface Props {
   item: Movie;
@@ -82,7 +82,7 @@ const Card = styled.div<Props>`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: 600;
     color: white;
     opacity: 0;

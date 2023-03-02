@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import styled from "styled-components";
 import apiConfig from "../../api/apiConfig";
 import tmdbApi from "../../api/tmdbApi";
-import noImage from "../../assets/noimage.png";
+import noImage from "../../assets/imgs/noimage.png";
 import CastList from "./CastList";
 
 interface MovieDetails {
