@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { useNavigate } from "react-router";
+import styled from "styled-components";
 import FilledButton from "./buttons/Button";
 import Input from "./Input";
 
@@ -32,7 +33,7 @@ function MovieSearch(props: Props) {
   );
 
   return (
-    <form onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit}>
       <Input
         type="text"
         placeholder="Enter keyword"
@@ -40,8 +41,23 @@ function MovieSearch(props: Props) {
         onChange={handleInputChange}
       />
       <FilledButton onClick={handleSubmit}>Search</FilledButton>
-    </form>
+    </StyledForm>
   );
 }
+
+const StyledForm = styled.form`
+  display: flex;
+  padding: 1rem 0.5rem;
+  gap: 0.8rem;
+  text-align: center;
+
+  input {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0 0.7rem;
+  }
+`;
 
 export default MovieSearch;
