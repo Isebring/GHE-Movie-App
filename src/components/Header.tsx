@@ -91,11 +91,11 @@ const NavItem = styled.li<NavItemProps>`
 
   & a {
     text-decoration: none;
-    color: ${({ active }) => (active ? "orange" : "white")};
+    color: ${({ active }) => (active ? "#5c77c9" : "white")};
   }
 
   & a:hover {
-    color: orange;
+    color: #5c77c9;
   }
 `;
 export default Header;
