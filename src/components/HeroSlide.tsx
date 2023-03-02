@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import apiConfig from "../../api/apiConfig";
-import axiosClient from "../../api/axiosClient";
-import tmdbApi, { movieType } from "../../api/tmdbApi";
-import Buttons, { OutlineButton } from "../buttons/Button";
+import apiConfig from "../api/apiConfig";
+import axiosClient from "../api/axiosClient";
+import tmdbApi, { movieType } from "../api/tmdbApi";
+import Buttons, { OutlineButton } from "./buttons/Button";
 
 interface MoviesResponse {
   results: { backdrop_path: string }[];
@@ -37,27 +37,27 @@ function HeroSlide() {
 
   return (
     <SwiperWrapper>
-    <Swiper
-      modules={[Autoplay]}
-      grabCursor={true}
-      spaceBetween={0}
-      slidesPerView={1}
-      autoplay={{ delay: 3500 }}
-    >
-      {movieItems.map((item, i) => (
-        <SwiperSlide key={i}>
-          {({ isActive }) => (
-            <SwiperItem>
-              <HeroSlideItem
-                item={item}
-                className={`${isActive ? "active" : ""}`}
-              />
-              {/* // <img src={apiConfig.originalImage(item.backdrop_path)} /> */}
-            </SwiperItem>
-          )}
-        </SwiperSlide>
-      ))}
-    </Swiper>
+      <Swiper
+        modules={[Autoplay]}
+        grabCursor={true}
+        spaceBetween={0}
+        slidesPerView={1}
+        autoplay={{ delay: 3500 }}
+      >
+        {movieItems.map((item, i) => (
+          <SwiperSlide key={i}>
+            {({ isActive }) => (
+              <SwiperItem>
+                <HeroSlideItem
+                  item={item}
+                  className={`${isActive ? "active" : ""}`}
+                />
+                {/* // <img src={apiConfig.originalImage(item.backdrop_path)} /> */}
+              </SwiperItem>
+            )}
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </SwiperWrapper>
   );
   {
@@ -95,7 +95,7 @@ const HeroSlideItem = (props: any) => {
   // }
 
   return (
-    <div style={{ backgroundImage: `url(${background})` }}>
+    <HeroSlideContainer style={{ backgroundImage: `url(${background})` }}>
       <Flex>
         <Center>
           <H2Title>{item.title}</H2Title>
@@ -111,7 +111,7 @@ const HeroSlideItem = (props: any) => {
         </Center>
         <W500Image src={apiConfig.w500Image(item.poster_path)} alt="" />
       </Flex>
-    </div>
+    </HeroSlideContainer>
   );
 };
 
@@ -142,8 +142,13 @@ const HeroSlideItem = (props: any) => {
 //   )
 // };
 
+const HeroSlideContainer = styled.div`
+  background-size: cover;
+  background-repeat: no-repeat;
+`;
+
 const SwiperWrapper = styled.div`
-height: 100%;
+  height: 100%;
 `;
 
 const HoverButton = styled.div`
@@ -217,7 +222,6 @@ const H2Title = styled.h2`
   @media (max-width: 430px) {
     font-size: 1.2rem;
   }
-
 `;
 
 const SwiperItem = styled.div`
