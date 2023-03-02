@@ -99,7 +99,7 @@ const Backdrop = styled.div<{ backgroundImage: string }>`
     top: 3rem;
     left: 0;
     width: 100%;
-    height: 150%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 0;
     opacity: 0.5;
