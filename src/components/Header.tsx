@@ -57,7 +57,7 @@ const LogoStyle = styled.div`
   width: 8rem;
   height: 3rem;
   display: flex;
-  padding: 0.18rem;
+  padding: 0.3rem;
 
   @media (max-width: 500px) {
     display: none;
