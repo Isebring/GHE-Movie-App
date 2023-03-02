@@ -33,7 +33,7 @@ class ErrorBoundary extends Component<Props, State> {
           return (
             <StyledSmallError>
               <h2>{message}</h2>
-              <button onClick={() => window.history.back()}>
+              <button onClick={() => window.location.reload()}>
                 Refresh Page
               </button>
             </StyledSmallError>
