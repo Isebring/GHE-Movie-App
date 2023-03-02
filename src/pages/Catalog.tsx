@@ -4,7 +4,7 @@ import PageHeader from "../components/PageHeader";
 import { useState } from "react";
 import styled from "styled-components";
 import { category as cate } from "../api/tmdbApi";
-import { OutlineButton } from "../components/Button";
+import FilledButton from "../components/Button";
 import MovieGrid from "../components/MovieGrid";
 
 function Catalog() {
@@ -35,7 +35,7 @@ function Catalog() {
       </PageHeader>
       <MovieGrid category={category} />
       <BackToTopWrapper>
-        <OutlineButton onClick={handleBackToTop}>Back to Top</OutlineButton>
+        <FilledButton onClick={handleBackToTop}>Back to Top</FilledButton>
       </BackToTopWrapper>
     </>
   );
@@ -43,8 +43,13 @@ function Catalog() {
 
 const BackToTopWrapper = styled.div`
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 2.5rem;
+  right: 2rem;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 export default Catalog;
