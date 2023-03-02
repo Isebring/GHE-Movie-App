@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 interface Props {
   children: string;
 }
@@ -5,9 +7,16 @@ interface Props {
 function PageHeader(props: Props) {
   return (
     <div>
-      <h2>{props.children}</h2>
+      <StyledH2>{props.children}</StyledH2>
     </div>
   );
 }
+
+const StyledH2 = styled.h2`
+  font-family: "Inter", system-ui, Arial, sans-serif;
+  font-size: 1.5rem;
+  color: white;
+  padding: 0.7rem;
+`;
 
 export default PageHeader;

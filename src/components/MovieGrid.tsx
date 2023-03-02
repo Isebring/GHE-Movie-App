@@ -3,19 +3,13 @@ import { useParams } from "react-router";
 import styled from "styled-components";
 import tmdbApi, { category, movieType, tvType } from "../api/tmdbApi";
 import useInfiniteScroll from "../hooks/useInfiniteMovies";
+import { Movie } from "../types";
 import MovieCard from "./MovieCard";
 import MovieSearch from "./MovieSearch";
 
 interface Props {
   category: string;
   keyword?: string;
-}
-interface Movie {
-  id: number;
-  title: string;
-  name: string;
-  poster_path: string;
-  backdrop_path: string;
 }
 
 function MovieGrid(props: Props) {

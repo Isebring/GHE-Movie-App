@@ -2,21 +2,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import apiConfig from "../api/apiConfig";
 import { category } from "../api/tmdbApi";
-import noImage from "../assets/noimage.png";
+import noImage from "../assets/imgs/noimage.png";
+import { Movie } from "../types";
 
 interface Props {
   item: Movie;
   category: string;
-}
-
-interface Movie {
-  id: number;
-  title: string;
-  name: string;
-  poster_path: string;
-  backdrop_path: string;
-  vote_average?: number;
-  vote_count?: number;
 }
 
 function MovieCard(props: Props) {
@@ -38,10 +29,6 @@ function MovieCard(props: Props) {
         category={props.category}
         style={{ backgroundImage: `url(${bg})` }}
       />
-      {/* <button>
-          <i>Play</i>
-        </button> */}
-      {/* Display title of Movie or TV Show */}
       <MediaTitle>
         <h3>{item.title || item.name}</h3>
       </MediaTitle>
@@ -86,7 +73,7 @@ const Card = styled.div<Props>`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: 600;
     color: white;
     opacity: 0;

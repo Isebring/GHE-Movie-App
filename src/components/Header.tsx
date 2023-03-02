@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import logoImage from "../assets/imgs/GHEDb.png";
 
 const headerNav = [
   {
@@ -29,11 +30,18 @@ function Header() {
   return (
     <HeaderStyle ref={headerRef}>
       <Nav>
-        {headerNav.map((e, i) => (
-          <NavItem key={i} active={i === active}>
-            <Link to={e.path}>{e.display}</Link>
-          </NavItem>
-        ))}
+        <Link to="/.">
+          <LogoStyle>
+            <img src={logoImage} alt="GHEDb logotype" />
+          </LogoStyle>
+        </Link>
+        <JustifyRight>
+          {headerNav.map((e, i) => (
+            <NavItem key={i} active={i === active}>
+              <Link to={e.path}>{e.display}</Link>
+            </NavItem>
+          ))}
+        </JustifyRight>
       </Nav>
     </HeaderStyle>
   );
@@ -41,19 +49,42 @@ function Header() {
 
 const HeaderStyle = styled.header``;
 
-const Nav = styled.ul`
+const JustifyRight = styled.div`
+  display: flex;
+`;
+
+const LogoStyle = styled.div`
+  width: 8rem;
+  height: 3rem;
+  display: flex;
+  padding: 0.18rem;
+
+  @media (max-width: 500px) {
+    display: none;
+  }
+
+  & :hover {
+    filter: brightness(0.9);
+  }
+`;
+
+const Nav = styled.div`
   display: flex;
   list-style: none;
-  justify-content: right;
-  font-size: 1.5rem;
+  justify-content: space-between;
+  font-size: 1.7rem;
   background: #000000;
+
+  @media (max-width: 370px) {
+    font-size: 1.4rem;
+  }
 `;
 
 const NavItem = styled.li<NavItemProps>`
   font-family: "Poppins", system-ui, Arial, sans-serif;
   margin: 0 0.5rem;
   font-weight: ${({ active }) => (active ? "bold" : "normal")};
-  border-bottom: ${({ active }) => (active ? "3px solid white" : "normal")};
+  border-bottom: ${({ active }) => (active ? "5px solid white" : "normal")};
 
   & a {
     text-decoration: none;
@@ -64,5 +95,4 @@ const NavItem = styled.li<NavItemProps>`
     color: orange;
   }
 `;
-
 export default Header;
