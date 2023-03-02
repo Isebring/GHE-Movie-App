@@ -110,6 +110,10 @@ const Backdrop = styled.div<{ backgroundImage: string }>`
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 0;
     opacity: 0.5;
+
+    @media only screen and (max-width: 500px) {
+      top: 2rem;
+    }
   }
 `;
 
