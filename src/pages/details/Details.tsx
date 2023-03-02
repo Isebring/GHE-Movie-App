@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import styled from 'styled-components';
-import apiConfig from '../../api/apiConfig';
-import tmdbApi from '../../api/tmdbApi';
-import CastList from './CastList';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import styled from "styled-components";
+import apiConfig from "../../api/apiConfig";
+import tmdbApi from "../../api/tmdbApi";
+import noImage from "../../assets/noimage.png";
+import CastList from "./CastList";
 
 interface MovieDetails {
   id: number;
@@ -42,24 +43,27 @@ function Details() {
           <Backdrop
             style={{
               backgroundImage: `url(${apiConfig.originalImage(
-                item.backdrop_path || item.poster_path || ''
+                item.backdrop_path || item.poster_path || ""
               )})`,
             }}
           >
             <MovieContent>
               <Poster
                 src={apiConfig.originalImage(
-                  item.poster_path || item.backdrop_path || ''
+                  item.poster_path || item.backdrop_path || ""
                 )}
                 alt={`${item.title || item.name} poster`}
+                onError={(e) => {
+                  e.currentTarget.src = noImage;
+                }}
               />
 
               <Info>
                 <div className="title">
                   <h2>{item.title || item.name}</h2>
                   <h3>{item.release_date}</h3>
-                  <h3>{item.vote_average.toFixed(1) + ' average score'}</h3>
-                  <h3>{item.vote_count + ' voters'}</h3>
+                  <h3>{"User rating: " + item.vote_average.toFixed(1)}</h3>
+                  <h3>{item.vote_count + " votes"}</h3>
                 </div>
                 <Genres>
                   {item.genres &&
@@ -93,7 +97,7 @@ const Backdrop = styled.div`
   background-repeat: no-repeat;
 
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 2rem;
     left: 0;

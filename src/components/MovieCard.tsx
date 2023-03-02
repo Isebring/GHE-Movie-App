@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import apiConfig from '../api/apiConfig';
-import { category } from '../api/tmdbApi';
-import noImage from '../assets/noimage.png';
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import apiConfig from "../api/apiConfig";
+import { category } from "../api/tmdbApi";
+import noImage from "../assets/noimage.png";
 
 interface Props {
   item: Movie;
@@ -21,10 +21,10 @@ interface Movie {
 
 function MovieCard(props: Props) {
   const item = props.item;
-  const link = '/' + category[props.category] + '/' + item.id;
+  const link = "/" + category[props.category] + "/" + item.id;
 
   // Get background for MovieCard
-  let bg = '';
+  let bg = "";
   if (item.poster_path || item.backdrop_path) {
     bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
   } else {
@@ -32,8 +32,12 @@ function MovieCard(props: Props) {
   }
 
   return (
-    <Link style={{ textDecoration: 'none' }} to={link}>
-      <Card item={item} category={props.category} />
+    <Link style={{ textDecoration: "none" }} to={link}>
+      <Card
+        item={item}
+        category={props.category}
+        style={{ backgroundImage: `url(${bg})` }}
+      />
       {/* <button>
           <i>Play</i>
         </button> */}
@@ -46,7 +50,7 @@ function MovieCard(props: Props) {
 }
 
 const MediaTitle = styled.div`
-  font-family: 'Inter', system-ui, Arial, sans-serif;
+  font-family: "Inter", system-ui, Arial, sans-serif;
   color: white;
 `;
 
@@ -60,7 +64,7 @@ const Card = styled.div<Props>`
   margin-bottom: 1 rem;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -77,7 +81,7 @@ const Card = styled.div<Props>`
   }
 
   &::after {
-    content: 'User rating: ${(props) => props.item.vote_average}';
+    content: "User rating: ${(props) => props.item.vote_average}";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -87,7 +91,7 @@ const Card = styled.div<Props>`
     color: white;
     opacity: 0;
     transition: opacity 0.4s;
-    font-family: 'Poppins', system-ui, Arial, sans-serif;
+    font-family: "Poppins", system-ui, Arial, sans-serif;
 
     @media (max-width: 1600px) {
       font-size: 3rem;
@@ -109,10 +113,5 @@ const Card = styled.div<Props>`
   &:hover::after {
     opacity: 1;
   }
-
-  background-image: ${(props) =>
-    `url(${apiConfig.w500Image(
-      props.item.poster_path || props.item.backdrop_path
-    )})`};
 `;
 export default MovieCard;
