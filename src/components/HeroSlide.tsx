@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import apiConfig from "../api/apiConfig";
 import axiosClient from "../api/axiosClient";
 import tmdbApi, { movieType } from "../api/tmdbApi";
-import Buttons, { OutlineButton } from "./buttons/Button";
+import Buttons, { OutlineButton } from "./Button";
 
 interface MoviesResponse {
   results: { backdrop_path: string }[];
@@ -104,9 +104,11 @@ const HeroSlideItem = (props: any) => {
             <Buttons onClick={() => navigate("/movie/" + item.id)}>
               To details
             </Buttons>
-            <HoverButton>
-              <OutlineButton>More movies</OutlineButton>
-            </HoverButton>
+            <Link to="/movie">
+              <HoverButton>
+                <OutlineButton>More movies</OutlineButton>
+              </HoverButton>
+            </Link>
           </ButtonFlex>
         </Center>
         <W500Image src={apiConfig.w500Image(item.poster_path)} alt="" />
