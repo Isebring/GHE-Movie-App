@@ -37,7 +37,7 @@ function Details() {
     getDetail();
   }, [category, id]);
 
-  if (!item) return <p>Filmen finns inte....</p>;
+  if (!item) return <p>Movie does not exist....</p>;
 
   return (
     <Backdrop
