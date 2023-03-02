@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { category, movieType, tvType } from "../api/tmdbApi";
 import OutlineButton from "../components/Button";
@@ -6,38 +6,40 @@ import HeroSlide from "../components/HeroSlide";
 import MovieList from "../components/MovieList";
 
 function Home() {
-  const navigate = useNavigate();
-
   return (
     <div>
       <HeroSlide />
       <SpaceBetween>
         <h2>Trending Movies</h2>
-        <OutlineButton>View more</OutlineButton>
+        <Link to="/movie">
+          <OutlineButton>View more</OutlineButton>
+        </Link>
       </SpaceBetween>
       <MovieList category={category.movie} type={movieType.popular} />
-      <Link to="/movie"></Link>
 
       <SpaceBetween>
         <h2>Top Rated Movies</h2>
-        <OutlineButton>View more</OutlineButton>
+        <Link to="/movie">
+          <OutlineButton>View more</OutlineButton>
+        </Link>
       </SpaceBetween>
       <MovieList category={category.movie} type={movieType.top_rated} />
-      <Link to="/movie"></Link>
 
       <SpaceBetween>
         <h2>Trending TV Shows</h2>
-        <OutlineButton>View more</OutlineButton>
+        <Link to="/tv">
+          <OutlineButton>View more</OutlineButton>
+        </Link>
       </SpaceBetween>
       <MovieList category={category.tv} type={tvType.popular} />
-      <Link to="/tv"></Link>
 
       <SpaceBetween>
         <h2>Top Rated TV Shows</h2>
-        <OutlineButton>View more</OutlineButton>
+        <Link to="/tv">
+          <OutlineButton>View more</OutlineButton>
+        </Link>
       </SpaceBetween>
       <MovieList category={category.tv} type={tvType.top_rated} />
-      <Link to="/tv"></Link>
     </div>
   );
 }

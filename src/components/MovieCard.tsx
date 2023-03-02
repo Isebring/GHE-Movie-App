@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import apiConfig from "../api/apiConfig";
 import { category } from "../api/tmdbApi";
+import noImage from "../assets/noimage.png";
 
 interface Props {
   item: Movie;
@@ -23,15 +24,25 @@ function MovieCard(props: Props) {
   const link = "/" + category[props.category] + "/" + item.id;
 
   // Get background for MovieCard
-
-  let bg;
+  let bg = "";
   if (item.poster_path || item.backdrop_path) {
     bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
+  } else {
+    bg = noImage;
   }
 
   return (
     <Link style={{ textDecoration: "none" }} to={link}>
       <Card item={item} category={props.category} />
+      <Card
+        item={item}
+        category={props.category}
+        style={{ backgroundImage: `url(${bg})` }}
+      />
+      {/* <button>
+          <i>Play</i>
+        </button> */}
+      {/* Display title of Movie or TV Show */}
       <MediaTitle>
         <h3>{item.title || item.name}</h3>
       </MediaTitle>
@@ -103,10 +114,5 @@ const Card = styled.div<Props>`
   &:hover::after {
     opacity: 1;
   }
-
-  background-image: ${(props) =>
-    `url(${apiConfig.w500Image(
-      props.item.poster_path || props.item.backdrop_path
-    )})`};
 `;
 export default MovieCard;

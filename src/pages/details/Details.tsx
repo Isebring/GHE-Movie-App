@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import styled from "styled-components";
 import apiConfig from "../../api/apiConfig";
 import tmdbApi from "../../api/tmdbApi";
+import noImage from "../../assets/noimage.png";
 import CastList from "./CastList";
 
 interface MovieDetails {
@@ -10,8 +11,8 @@ interface MovieDetails {
   title: string;
   name: string;
   genres: { name: string }[];
-  poster_path: string | null;
-  backdrop_path: string | null;
+  poster_path: string;
+  backdrop_path: string;
   release_date: string;
   vote_average: number;
   vote_count: number;
@@ -40,11 +41,13 @@ function Details() {
       {item && (
         <>
           <Backdrop
-            style={{
-              backgroundImage: `url(${apiConfig.originalImage(
-                item.backdrop_path || item.poster_path || ""
-              )})`,
-            }}
+            backgroundImage={
+              item.backdrop_path || item.poster_path
+                ? apiConfig.originalImage(
+                    item.backdrop_path || item.poster_path
+                  )
+                : ""
+            }
           >
             <MovieContent>
               <Poster
@@ -52,14 +55,17 @@ function Details() {
                   item.poster_path || item.backdrop_path || ""
                 )}
                 alt={`${item.title || item.name} poster`}
+                onError={(e) => {
+                  e.currentTarget.src = noImage;
+                }}
               />
 
               <Info>
                 <div className="title">
                   <h2>{item.title || item.name}</h2>
                   <h3>{item.release_date}</h3>
-                  <h3>{item.vote_average.toFixed(1) + " average score"}</h3>
-                  <h3>{item.vote_count + " voters"}</h3>
+                  <h3>{"User rating: " + item.vote_average.toFixed(1)}</h3>
+                  <h3>{item.vote_count + " votes"}</h3>
                 </div>
                 <Genres>
                   {item.genres &&
@@ -85,12 +91,14 @@ function Details() {
   );
 }
 
-const Backdrop = styled.div`
+const Backdrop = styled.div<{ backgroundImage: string }>`
   height: 100vh;
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
+  ${({ backgroundImage }) =>
+    backgroundImage && `background-image: url(${backgroundImage})`};
 
   &:before {
     content: "";
