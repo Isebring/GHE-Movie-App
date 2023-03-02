@@ -1,5 +1,6 @@
 import { Component, ReactNode } from "react";
 import styled from "styled-components";
+import FilledButton from "./components/buttons/Button";
 
 interface Props {
   children: ReactNode;
@@ -33,9 +34,9 @@ class ErrorBoundary extends Component<Props, State> {
           return (
             <StyledSmallError>
               <h2>{message}</h2>
-              <button onClick={() => window.location.reload()}>
+              <FilledButton onClick={() => window.location.reload()}>
                 Refresh Page
-              </button>
+              </FilledButton>
             </StyledSmallError>
           );
         case "main":
@@ -43,7 +44,9 @@ class ErrorBoundary extends Component<Props, State> {
             <StyledMainError>
               {image && <img src={image} alt="Error" />}
               <p>{message}</p>
-              <button onClick={() => window.history.back()}>Go back</button>
+              <FilledButton onClick={() => window.history.back()}>
+                Go back
+              </FilledButton>
             </StyledMainError>
           );
         default:
@@ -86,7 +89,6 @@ const StyledSmallError = styled.div`
   gap: 1rem;
   align-items: center;
   justify-content: center;
-  margin: 1rem;
 
   h2 {
     color: #fff;
