@@ -90,6 +90,10 @@ const Grid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
   gap: 1.25rem;
   margin-bottom: 3rem;
+
+  @media (max-width: 437px) {
+    padding: 0.6rem;
+  }
 `;
 
 export default MovieGrid;

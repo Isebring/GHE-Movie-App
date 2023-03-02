@@ -73,6 +73,8 @@ const CastItemName = styled.p`
   font-size: 0.8rem;
   max-width: 100%;
   text-align: center;
+  font-weight: 600;
+  font-family: "Poppins", system-ui, Arial, sans-serif;
 `;
 
 export default CastList;

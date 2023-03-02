@@ -71,7 +71,9 @@ function Details() {
                 .slice(0, 5)
                 .map((genre, i) => <GenreItem key={i}>{genre.name}</GenreItem>)}
           </Genres>
-          <p className="overview">{item.overview}</p>
+          <p className="overview" style={{ fontWeight: "600" }}>
+            {item.overview}
+          </p>
           <Cast>
             <div>
               <h2>Casts</h2>
