@@ -1,6 +1,6 @@
 import { Component, ReactNode } from "react";
 import styled from "styled-components";
-import FilledButton from "./components/buttons/Button";
+import FilledButton from "./components/Button";
 
 interface Props {
   children: ReactNode;
