@@ -1,19 +1,19 @@
-import { useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
+import { useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
+import styled from "styled-components";
 
 const headerNav = [
   {
-    display: 'Home',
-    path: '/',
+    display: "Home",
+    path: "/",
   },
   {
-    display: 'Movies',
-    path: '/movie',
+    display: "Movies",
+    path: "/movie",
   },
   {
-    display: 'TV Series',
-    path: '/tv',
+    display: "TV Series",
+    path: "/tv",
   },
 ];
 
@@ -46,25 +46,22 @@ const Nav = styled.ul`
   list-style: none;
   justify-content: right;
   font-size: 1.5rem;
+  background: #000000;
 `;
 
 const NavItem = styled.li<NavItemProps>`
-  font-family: system-ui, Arial, sans-serif;
+  font-family: "Poppins", system-ui, Arial, sans-serif;
   margin: 0 0.5rem;
-  font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
-  border-bottom: ${({ active }) => (active ? '3px solid white' : 'normal')};
-  
+  font-weight: ${({ active }) => (active ? "bold" : "normal")};
+  border-bottom: ${({ active }) => (active ? "3px solid white" : "normal")};
 
   & a {
     text-decoration: none;
-    color: ${({ active }) => (active ? 'orange' : 'white')};
-  }
-  
-  & a:hover {
-    color: orange;
-    
+    color: ${({ active }) => (active ? "orange" : "white")};
   }
 
+  & a:hover {
+    color: orange;
   }
 `;
 

@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { useNavigate } from "react-router";
+import FilledButton from "./buttons/Button";
 import Input from "./Input";
 
 interface Props {
@@ -38,7 +39,7 @@ function MovieSearch(props: Props) {
         value={keyword}
         onChange={handleInputChange}
       />
-      <button type="submit">Search</button>
+      <FilledButton onClick={handleSubmit}>Search</FilledButton>
     </form>
   );
 }
