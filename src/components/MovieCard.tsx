@@ -32,10 +32,6 @@ function MovieCard(props: Props) {
   return (
     <Link style={{ textDecoration: "none" }} to={link}>
       <Card item={item} category={props.category} />
-      {/* <button>
-          <i>Play</i>
-        </button> */}
-      {/* Display title of Movie or TV Show */}
       <MediaTitle>
         <h3>{item.title || item.name}</h3>
       </MediaTitle>
