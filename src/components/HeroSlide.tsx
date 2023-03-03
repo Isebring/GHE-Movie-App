@@ -77,7 +77,7 @@ const HeroSlideItem = (props: Props) => {
           <Overview>{item.overview}</Overview>
           <ButtonFlex>
             <Buttons onClick={() => navigate("/movie/" + item.id)}>
-              To details
+              Read more
             </Buttons>
             <Link to="/movie">
               <HoverButton>

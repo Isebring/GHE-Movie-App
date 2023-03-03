@@ -68,7 +68,7 @@ const Card = styled.div<Props>`
   }
 
   &::after {
-    content: "User rating: ${(props) => props.item.vote_average}";
+    content: "User rating: ${(props) => props.item.vote_average?.toFixed(1)}";
     position: absolute;
     top: 50%;
     left: 50%;
