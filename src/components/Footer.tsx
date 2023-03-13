@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import FooterImage from "../assets/imgs/searchandfind.png";
+import FooterImage from "../assets/imgs/searchandfind.svg";
 
 function Footer() {
   return (
