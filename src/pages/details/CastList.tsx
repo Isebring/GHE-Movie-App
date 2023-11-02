@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import styled from "styled-components";
-import apiConfig from "../../api/apiConfig";
-import tmdbApi from "../../api/tmdbApi";
-import noImage from "../../assets/imgs/noimage.png";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import styled from 'styled-components';
+import apiConfig from '../../api/apiConfig';
+import tmdbApi from '../../api/tmdbApi';
+import noImage from '../../assets/imgs/noimage.png';
 
 interface Props {
   id: number;
@@ -59,6 +59,10 @@ const CastItem = styled.div`
   align-items: center;
   width: 20%;
   padding: 8px;
+
+  @media only screen and (max-width: 600px) {
+    width: 50%;
+  }
 `;
 
 const CastItemImage = styled.img`
@@ -74,7 +78,7 @@ const CastItemName = styled.p`
   max-width: 100%;
   text-align: center;
   font-weight: 600;
-  font-family: "Poppins", system-ui, Arial, sans-serif;
+  font-family: 'Poppins', system-ui, Arial, sans-serif;
 `;
 
 export default CastList;
