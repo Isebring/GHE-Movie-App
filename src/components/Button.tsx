@@ -10,7 +10,7 @@ function FilledButton(props: ButtonProps) {
     <Button
       variant="gradient"
       gradient={{ from: 'orange', to: 'red' }}
-      size="md"
+      size="lg"
       onClick={props.onClick ?? undefined}
     >
       {props.children}
