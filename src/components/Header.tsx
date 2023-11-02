@@ -1,20 +1,20 @@
-import { useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
-import styled from "styled-components";
-import logoImage from "../assets/imgs/GHEDb.png";
+import { useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
+import logoImage from '../assets/imgs/GHEDb.png';
 
 const headerNav = [
   {
-    display: "Home",
-    path: "/",
+    display: 'Home',
+    path: '/',
   },
   {
-    display: "Movies",
-    path: "/movie",
+    display: 'Movies',
+    path: '/movie',
   },
   {
-    display: "TV Series",
-    path: "/tv",
+    display: 'TV Series',
+    path: '/tv',
   },
 ];
 
@@ -47,7 +47,9 @@ function Header() {
   );
 }
 
-const HeaderStyle = styled.header``;
+const HeaderStyle = styled.header`
+  padding: 0.4rem;
+`;
 
 const JustifyRight = styled.div`
   display: flex;
@@ -79,19 +81,19 @@ const Nav = styled.div`
   }
 
   @media (max-width: 370px) {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 `;
 
 const NavItem = styled.li<NavItemProps>`
-  font-family: "Poppins", system-ui, Arial, sans-serif;
+  font-family: 'Poppins', system-ui, Arial, sans-serif;
   margin: 0 0.5rem;
-  font-weight: ${({ active }) => (active ? "bold" : "normal")};
-  border-bottom: ${({ active }) => (active ? "5px solid white" : "normal")};
+  font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
+  border-bottom: ${({ active }) => (active ? '5px solid white' : 'normal')};
 
   & a {
     text-decoration: none;
-    color: ${({ active }) => (active ? "#5c77c9" : "white")};
+    color: ${({ active }) => (active ? '#5c77c9' : 'white')};
   }
 
   & a:hover {
