@@ -1,3 +1,4 @@
+import { Container } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { category, movieType, tvType } from '../api/tmdbApi';
@@ -9,37 +10,40 @@ function Home() {
   return (
     <div>
       <HeroSlide />
-      <SpaceBetween>
-        <h2>Trending Movies</h2>
-        <Link to="/movie">
-          <OutlineButton>View more</OutlineButton>
-        </Link>
-      </SpaceBetween>
-      <MovieList category={category.movie} type={movieType.popular} />
+      <Container fluid>
+        <SpaceBetween>
+          <h2>Trending Movies</h2>
+          <Link to="/movie">
+            <OutlineButton>View more</OutlineButton>
+          </Link>
+        </SpaceBetween>
+        <MovieList category={category.movie} type={movieType.popular} />
 
-      <SpaceBetween>
-        <h2>Top Rated Movies</h2>
-        <Link to="/movie">
-          <OutlineButton>View more</OutlineButton>
-        </Link>
-      </SpaceBetween>
-      <MovieList category={category.movie} type={movieType.top_rated} />
+        <SpaceBetween>
+          <h2>Top Rated Movies</h2>
+          <Link to="/movie">
+            <OutlineButton>View more</OutlineButton>
+          </Link>
+        </SpaceBetween>
+        <MovieList category={category.movie} type={movieType.top_rated} />
 
-      <SpaceBetween>
-        <h2>Trending TV Shows</h2>
-        <Link to="/tv">
-          <OutlineButton>View more</OutlineButton>
-        </Link>
-      </SpaceBetween>
-      <MovieList category={category.tv} type={tvType.popular} />
+        <SpaceBetween>
+          <h2>Trending TV Shows</h2>
+          <Link to="/tv">
+            <OutlineButton>View more</OutlineButton>
+          </Link>
+        </SpaceBetween>
+        <MovieList category={category.tv} type={tvType.popular} />
 
-      <SpaceBetween>
-        <h2>Top Rated TV Shows</h2>
-        <Link to="/tv">
-          <OutlineButton>View more</OutlineButton>
-        </Link>
-      </SpaceBetween>
-      <MovieList category={category.tv} type={tvType.top_rated} />
+        <SpaceBetween>
+          <h2>Top Rated TV Shows</h2>
+          <Link to="/tv">
+            <OutlineButton>View more</OutlineButton>
+          </Link>
+        </SpaceBetween>
+
+        <MovieList category={category.tv} type={tvType.top_rated} />
+      </Container>
     </div>
   );
 }

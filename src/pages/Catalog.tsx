@@ -1,14 +1,15 @@
-import { useParams } from "react-router";
-import PageHeader from "../components/PageHeader";
+import { useParams } from 'react-router';
+import PageHeader from '../components/PageHeader';
 
-import { useState } from "react";
-import styled from "styled-components";
-import { category as cate } from "../api/tmdbApi";
-import FilledButton from "../components/Button";
-import MovieGrid from "../components/MovieGrid";
+import { Container } from '@mantine/core';
+import { useState } from 'react';
+import styled from 'styled-components';
+import { category as cate } from '../api/tmdbApi';
+import FilledButton from '../components/Button';
+import MovieGrid from '../components/MovieGrid';
 
 function Catalog() {
-  const { category = "" } = useParams();
+  const { category = '' } = useParams();
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   const handleScroll = () => {
@@ -22,18 +23,20 @@ function Catalog() {
   const handleBackToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
   // Attach event listener to the window to detect scrolling
-  window.addEventListener("scroll", handleScroll);
+  window.addEventListener('scroll', handleScroll);
   return (
     <>
       <PageHeader>
-        {category === cate.movie ? "Movies" : "TV series"}
+        {category === cate.movie ? 'Movies' : 'TV series'}
       </PageHeader>
-      <MovieGrid category={category} />
+      <Container fluid>
+        <MovieGrid category={category} />
+      </Container>
       <BackToTopWrapper>
         <FilledButton onClick={handleBackToTop}>Back to Top</FilledButton>
       </BackToTopWrapper>

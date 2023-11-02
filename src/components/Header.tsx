@@ -1,3 +1,4 @@
+import { Container } from '@mantine/core';
 import { useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
@@ -28,28 +29,28 @@ function Header() {
   const active = headerNav.findIndex((e) => e.path === pathname);
 
   return (
-    <HeaderStyle ref={headerRef}>
-      <Nav>
-        <Link to="/.">
-          <LogoStyle>
-            <img src={logoImage} alt="GHEDb logotype" />
-          </LogoStyle>
-        </Link>
-        <JustifyRight>
-          {headerNav.map((e, i) => (
-            <NavItem key={i} active={i === active}>
-              <Link to={e.path}>{e.display}</Link>
-            </NavItem>
-          ))}
-        </JustifyRight>
-      </Nav>
-    </HeaderStyle>
+    <Container fluid>
+      <HeaderStyle ref={headerRef}>
+        <Nav>
+          <Link to="/.">
+            <LogoStyle>
+              <img src={logoImage} alt="GHEDb logotype" />
+            </LogoStyle>
+          </Link>
+          <JustifyRight>
+            {headerNav.map((e, i) => (
+              <NavItem key={i} active={i === active}>
+                <Link to={e.path}>{e.display}</Link>
+              </NavItem>
+            ))}
+          </JustifyRight>
+        </Nav>
+      </HeaderStyle>
+    </Container>
   );
 }
 
-const HeaderStyle = styled.header`
-  padding: 0.4rem;
-`;
+const HeaderStyle = styled.header``;
 
 const JustifyRight = styled.div`
   display: flex;
@@ -80,7 +81,7 @@ const Nav = styled.div`
     justify-content: center;
   }
 
-  @media (max-width: 370px) {
+  @media (max-width: 400px) {
     font-size: 1.2rem;
   }
 `;
