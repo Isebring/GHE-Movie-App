@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import SwiperCore, { Autoplay } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import apiConfig from "../api/apiConfig";
-import tmdbApi, { movieType } from "../api/tmdbApi";
-import { Movie } from "../types";
-import Buttons, { OutlineButton } from "./Button";
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import SwiperCore, { Autoplay } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import apiConfig from '../api/apiConfig';
+import tmdbApi, { movieType } from '../api/tmdbApi';
+import { Movie } from '../types';
+import Buttons, { OutlineButton } from './Button';
 
 interface MoviesResponse {
   results: Movie[];
@@ -22,7 +22,7 @@ function HeroSlide() {
       try {
         const response: MoviesResponse = await tmdbApi.getMoviesList(
           movieType.popular,
-          { params }
+          params
         );
         setMovieItems(response.results.slice(0, 4));
       } catch (error) {}
@@ -45,7 +45,7 @@ function HeroSlide() {
               <SwiperItem>
                 <HeroSlideItem
                   item={item}
-                  className={`${isActive ? "active" : ""}`}
+                  className={`${isActive ? 'active' : ''}`}
                 />
               </SwiperItem>
             )}
@@ -76,7 +76,7 @@ const HeroSlideItem = (props: Props) => {
           <H2Title>{item.title}</H2Title>
           <Overview>{item.overview}</Overview>
           <ButtonFlex>
-            <Buttons onClick={() => navigate("/movie/" + item.id)}>
+            <Buttons onClick={() => navigate('/movie/' + item.id)}>
               Read more
             </Buttons>
             <Link to="/movie">
@@ -129,7 +129,7 @@ const Center = styled.div`
 
 const Overview = styled.div`
   color: white;
-  font-family: "Inter", system-ui, Arial, sans-serif;
+  font-family: 'Inter', system-ui, Arial, sans-serif;
   padding: 0.8rem;
   font-weight: 500;
 `;
@@ -150,7 +150,7 @@ const H2Title = styled.h2`
   font-weight: 700;
   color: white;
   display: flex;
-  font-family: "Poppins", system-ui, Arial, sans-serif;
+  font-family: 'Poppins', system-ui, Arial, sans-serif;
   padding: 0.2rem;
   text-align: center;
   @media (max-width: 850px) {
