@@ -41,6 +41,7 @@ function Details() {
 
   return (
     <Backdrop
+      style={{ marginBottom: '1rem' }}
       backgroundImage={
         item.backdrop_path || item.poster_path
           ? apiConfig.originalImage(item.backdrop_path || item.poster_path)
